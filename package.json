@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "live-server": "^1.2.2"
+  },
+  "scripts": {
+    "start:api": "node middleware.js",
+    "start:html": "live-server --port=8080 --host=localhost --open=index.html",
+    "start": "concurrently \"npm run start:api\" \"npm run start:html\""
+  }
+}

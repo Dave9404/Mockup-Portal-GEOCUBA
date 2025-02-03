@@ -36,78 +36,141 @@
 </head>
 <body>
   
-  <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+	<section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+		<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+			<div class="container">
+				<div class="navbar-brand">
+					<span class="navbar-logo">
+						<a href="Inicio.html">
+							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+						</a>
+					</span>
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+					data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<div class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+						<li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+								<strong>Servicios</strong>
+							</a>
+							<div id="services-dropdown" class="dropdown-menu"></div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+								<strong>Empresas</strong>
+							</a>
+							<div id="empresas-dropdown" class="dropdown-menu"></div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link link text-black text-primary" href="eventos.html"><strong>Eventos</strong></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link link text-black text-primary" href="noticias.html"><strong>Noticias</strong></a>
+						</li>
+					</ul>
+					<div class="icons-menu">
+						<a class="iconfont-wrapper" href="tel:+53 555555555">
+							<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+						</a>
+						<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
+							<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
+						</a>
+						<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
+							<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</section>
+	
+	<!-- Embedded JavaScript for dynamic services menu -->
+	<script>
+		async function loadServices() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-services');
+        if (!response.ok) {
+            throw new Error('Failed to fetch services');
+        }
+        const services = await response.json();
+
+        // Populate the dropdown menu dynamically
+        const dropdown = document.getElementById('services-dropdown');
+        services.forEach(service => {
+            const item = document.createElement('a');
+            item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
+            item.textContent = service.nombre;
+            item.classList.add('dropdown-item');
+            dropdown.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Error loading services:', error);
+    }
+}
+
+loadServices();
+async function loadEmpresas() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-empresas');
+        if (!response.ok) {
+            throw new Error('Failed to fetch empresas');
+        }
+        const empresas = await response.json();
+
+        // Populate the Empresas dropdown menu
+        const empresasDropdown = document.querySelector('#empresas-dropdown');
+        empresas.forEach(empresa => {
+            const item = document.createElement('a');
+            item.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa)}`;
+            item.textContent = empresa.empresa;
+            item.classList.add('dropdown-item');
+            empresasDropdown.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Error loading empresas:', error);
+    }
+}
+
+// Call the function to load empresas when the page loads
+loadEmpresas();
+	</script>
 	
 
-	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+	<section data-bs-version="5.1" class="header1 cid-umNLy2kQAu mbr-parallax-background" id="header01-21">
+		<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 27, 79);"></div>
 		<div class="container">
-			<div class="navbar-brand">
-				<span class="navbar-logo">
-					<a href="Inicio.html">
-						<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
-					</a>
-				</span>
-				
-			</div>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<div class="hamburger">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
+			<div class="row justify-content-center">
+				<div class="col-12 col-md-12 col-lg-7 image-wrapper">
+					<img id="main-image" class="w-100" src="assets/images/herophoto-1-1476x1155.png" alt="Obrero operando equipo">
 				</div>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary show display-4" href="Inicio.html"><strong>Inicio</strong></a></li><li class="nav-item dropdown">
-						<a class="nav-link link text-black text-primary dropdown-toggle display-4" href="servicios.html" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside"><strong>Servicios</strong></a><div class="dropdown-menu" aria-labelledby="dropdown-587"><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Artes Gráficas</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Cartografía</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Catastro</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios Marinos</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Cartografía Náutica</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Ayuda a la Navegación</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Teledetección</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Geodesia y Topografía</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Metrología</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Mapificación Topográfica</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios Ingeniero-Geológicos</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios y Soluciones Medioambientales</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Otros Productos</a></div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link link text-black dropdown-toggle show display-4" href="https://mobiri.se" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside"><strong>Empresas</strong></a><div class="dropdown-menu show" aria-labelledby="dropdown-183" data-bs-popper="none"><a class="text-black dropdown-item text-primary display-4" href="empresas.html">Geodesa</a><a class="text-black dropdown-item text-primary display-4" href="empresas.html">Estudios Marinos</a><a class="text-black dropdown-item display-4" href="empresas.html">GeoSí</a><a class="text-black dropdown-item display-4" href="empresas.html">Geocuba I.C.<br></a><div class="dropdown"><a class="text-black dropdown-item dropdown-toggle display-4" href="empresas.html" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dependencias Territoriales</a><div class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown-881"><a class="text-black dropdown-item text-primary display-4" href="empresas.html">Pinar del Río</a><a class="text-black dropdown-item display-4" href="empresas.html">Matanzas<br></a><a class="text-black dropdown-item display-4" href="empresas.html">Cienfuegos</a><a class="text-black dropdown-item display-4" href="empresas.html">Villa Clara / Santis Spíritus</a><a class="text-black dropdown-item display-4" href="empresas.html">Camagüey / Ciego de Ávila</a><a class="text-black dropdown-item display-4" href="empresas.html">Oriente Norte</a><a class="text-black dropdown-item display-4" href="empresas.html">Oriente Sur</a></div></div></div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link link text-black text-primary display-4" href="eventos.html"><strong>Eventos</strong></a>
-					</li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="noticias.html"><strong>Noticias</strong></a></li></ul>
-				<div class="icons-menu">
-					<a class="iconfont-wrapper" href="tel:+53 555555555">
-						<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
-					</a>
-					<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
-						<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
-					</a>
-					<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
-						<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
-					</a>
-					
-				</div>
-				
-			</div>
-		</div>
-	</nav>
-</section>
-
-<section data-bs-version="5.1" class="header1 cid-umNLy2kQAu mbr-parallax-background" id="header01-21">
-	
-
-	
-	<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 27, 79);"></div>
-
-	<div class="container">
-		<div class="row justify-content-center">
-			<div class="col-12 col-md-12 col-lg-7 image-wrapper">
-				<img class="w-100" src="assets/images/herophoto-1-1476x1155.png" alt="Obrero operando equipo">
-			</div>
-			<div class="col-12 col-lg col-md-12">
-				<div class="text-wrapper align-left">
-					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-1">
-						<strong>Soluciones Integradas</strong><br><strong>al Medio Geográfico</strong></h1>
-					<p class="mbr-text mbr-fonts-style mb-4 display-7">
-						GEOCUBA es una empresa cubana líder en geociencias, dedicada a ofrecer soluciones innovadoras y sostenibles para la investigación y explotación de recursos naturales.</p>
-					<div class="mbr-section-btn mt-3"><a class="btn btn-secondary display-7" href="servicios.html#header09-2e">Nuestros Servicios</a></div>
+				<div class="col-12 col-lg col-md-12">
+					<div class="text-wrapper align-left">
+						<h1 id="main-title" class="mbr-section-title mbr-fonts-style mb-4 display-1">
+							<strong>Default Title</strong>
+						</h1>
+						<p id="main-description" class="mbr-text mbr-fonts-style mb-4 display-7">
+							Default description text.
+						</p>
+						<div class="mbr-section-btn mt-3">
+							<a class="btn btn-secondary display-7" href="servicios.html#header09-2e">Nuestros Servicios</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>
+	</section>
+	
+
 
 <section data-bs-version="5.1" class="start article4 cid-umRIT5Qde5" id="article04-29">
 	
@@ -157,18 +220,20 @@
                         <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab1" aria-selected="true"><strong>Nuestro Objetivo</strong><br></a></li>
                         <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab2" aria-selected="true"><strong>¿Qué hacemos?</strong></a></li>
                         <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab3" aria-selected="true"><strong>¿Cómo lo Logramos?</strong><br></a></li>
-                        
+                        <li class="nav-item">
+							<a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab"
+							   href="#tabs1-2b_tab4" aria-selected="false"><strong>Preguntas Frecuentes</strong></a>
+						</li>
                         
                     </ul>
                     <div class="tab-content">
-                        <div id="tab1" class="tab-pane in active" role="tabpanel">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <p class="mbr-text mbr-fonts-style display-7">Somos el Grupo Empresarial GEOCUBA, organización que surge el 1º de Mayo de 1995 como resultado de la integración del Instituto Cubano de Hidrografía y el Instituto Cubano de Geodesia y Cartografía, con antecedentes desde la década de los años 40 del siglo pasado, funcionando con criterios de rentabilidad y autofinanciamiento.
-<br><br></p>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="tabqsomos" class="tab-pane in active" role="tabpanel">
+							<div class="row">
+								<div class="col-md-12">
+									<p class="mbr-text mbr-fonts-style display-7">Default content</p>
+								</div>
+							</div>
+						</div>
                         <div id="tab2" class="tab-pane" role="tabpanel">
                             <div class="row">
                                 <div class="col-md-12">
@@ -190,6 +255,14 @@
                                 </div>
                             </div>
                         </div>
+						<div id="tabs1-2b_tab4" class="tab-pane" role="tabpanel">
+							<div class="row">
+								<div class="col-md-12" id="preguntas-frecuentes-container">
+									<!-- Dynamic FAQ content will be added here -->
+								</div>
+							</div>
+						</div>
+						
                         
                         
                     </div>
@@ -439,6 +512,26 @@
 		</div>
 	</div>
 </section>
+<section id="noticias" class="mbr-section content5 cid-newsHighlights">
+    <div class="container">
+        <h4 class="mbr-section-title mbr-fonts-style align-center display-2"><strong>Noticias</strong></h4>
+        
+        <!-- Highlighted News -->
+        <div id="highlighted-news" class="row mb-5">
+            <div class="col-12 col-md-6 image-wrapper">
+                <img id="highlighted-news-img" class="w-100" src="" alt="Highlighted News" />
+            </div>
+            <div class="col-12 col-md-6">
+                <h5 id="highlighted-news-title" class="mbr-fonts-style display-5"></h5>
+                <p id="highlighted-news-description" class="mbr-text mbr-fonts-style display-7"></p>
+                <a id="highlighted-news-link" class="btn btn-primary" href="#">Leer más</a>
+            </div>
+        </div>
+
+        <!-- Other News -->
+        <div id="news-list" class="row"></div>
+    </div>
+</section>
 
 <section data-bs-version="5.1" class="start article4 cid-umRPe7IMAi mbr-parallax-background" id="article04-2c">
 	
@@ -549,5 +642,173 @@
   
   
   <input name="animation" type="hidden">
+  <script>
+	async function loadPresentationData() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-presentacion');
+        
+        // Ensure response is successful
+        if (!response.ok) throw new Error('Failed to fetch presentation data');
+
+        const data = await response.json();
+        // console.log('Full Data Response:', data);
+
+        // Check that the response is an array and has at least one item
+        if (!Array.isArray(data) || data.length === 0) {
+            console.error('Presentation data is empty.');
+            return;
+        }
+
+        // Extract the first object from the data array
+        const presentation = data[0];
+
+        // Debug log to confirm structure
+        // console.log('Presentation object:', presentation);
+
+        // ** Set the title **
+        const titleElement = document.getElementById('main-title');
+        if (titleElement) {
+            titleElement.innerHTML = presentation.titulo || 'Default Title';
+        } else {
+            console.warn('Element with id "main-title" not found.');
+        }
+
+        // ** Set the description **
+        const descriptionElement = document.getElementById('main-description');
+        if (descriptionElement) {
+            descriptionElement.textContent = presentation.descripcion || 'Default description text.';
+        } else {
+            console.warn('Element with id "main-description" not found.');
+        }
+
+        // ** Handle the image (if it exists) **
+        const imageElement = document.getElementById('main-image');
+        if (imageElement) {
+            if (presentation.img && presentation.img.data) {
+                const base64Image = btoa(String.fromCharCode(...new Uint8Array(presentation.img.data)));
+                imageElement.src = 'data:image/jpeg;base64,' + base64Image;
+            } else {
+                console.warn('Image data is not available.');
+            }
+        } else {
+            console.warn('Element with id "main-image" not found.');
+        }
+
+        // ** Set content for tabs **
+		updateTabContent()
+
+
+
+        // console.log('Presentation data loaded successfully.');
+    } catch (error) {
+        console.error('Error loading presentation data:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadPresentationData();
+});
+
+function updateTabContent() {
+    const tab1Element = document.getElementById('tabqsomos');
+    if (tab1Element) {
+        tab1Element.textContent = presentation.qsomos || 'Default tab content';
+        console.log('Updated tabqsomos content');
+    } else {
+        console.warn('Element with id "tabqsomos" not found');
+    }
+
+    const tab2Element = document.querySelector('#tab2 p');
+    if (tab2Element) {
+        tab2Element.textContent = presentation.objetivo || 'Default tab content';
+        console.log('Updated tab2 content');
+    } else {
+        console.warn('Element with id "tab2" not found');
+    }
+
+    const tab3Element = document.querySelector('#tab3 p');
+    if (tab3Element) {
+        tab3Element.textContent = presentation.qhacemos || 'Default tab content';
+        console.log('Updated tab3 content');
+    } else {
+        console.warn('Element with id "tab3" not found');
+    }
+
+    const tab4Element = document.querySelector('#tab4 p');
+    if (tab4Element) {
+        tab4Element.textContent = presentation.clogramos || 'Default tab content';
+        console.log('Updated tab4 content');
+    } else {
+        console.warn('Element with id "tab4" not found');
+    }
+}
+
+
+async function loadNoticias() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-noticias-destacadas');
+        if (!response.ok) throw new Error('Failed to fetch noticias');
+
+        const noticias = await response.json();
+
+        // Populate highlighted news (first item)
+        if (noticias.length > 0) {
+            const highlighted = noticias[0];
+            document.getElementById('highlighted-news-img').src = highlighted.imagen;
+            document.getElementById('highlighted-news-title').textContent = highlighted.titulo;
+            document.getElementById('highlighted-news-description').textContent = highlighted.noticia;
+            document.getElementById('highlighted-news-link').href = highlighted.link;
+        }
+
+        // Populate other news
+        const newsList = document.getElementById('news-list');
+        noticias.slice(1).forEach(noticia => {
+            const card = document.createElement('div');
+            card.className = 'col-12 col-md-4';
+
+            card.innerHTML = `
+                <div class="card">
+                    <img class="card-img-top" src="${noticia.imagen}" alt="${noticia.titulo}">
+                    <div class="card-body">
+                        <h5 class="card-title">${noticia.titulo}</h5>
+                        <p class="card-text">${noticia.noticia}</p>
+                        <a href="${noticia.link}" class="btn btn-primary">Leer más</a>
+                    </div>
+                </div>`;
+            newsList.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error loading noticias:', error);
+    }
+}
+
+loadNoticias();	
+
+async function loadPreguntasFrecuentes() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-preguntas-frecuentes');
+        if (!response.ok) throw new Error('Failed to fetch preguntas frecuentes');
+
+        const preguntas = await response.json();
+        const container = document.getElementById('preguntas-frecuentes-container');
+
+        preguntas.forEach(pregunta => {
+            const faqItem = document.createElement('div');
+            faqItem.className = 'mbr-text mbr-fonts-style display-7';
+
+            faqItem.innerHTML = `
+                <h5 class="faq-question"><strong>${pregunta.pregunta}</strong></h5>
+                <p class="faq-answer">${pregunta.respuesta}</p>`;
+            container.appendChild(faqItem);
+        });
+    } catch (error) {
+        console.error('Error loading preguntas frecuentes:', error);
+    }
+}
+
+loadPreguntasFrecuentes();
+
+
+	</script>
   </body>
 </html>

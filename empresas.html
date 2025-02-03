@@ -32,54 +32,85 @@
 </head>
 <body>
   
-  <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+	<section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+		<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+			<div class="container">
+				<div class="navbar-brand">
+					<span class="navbar-logo">
+						<a href="Inicio.html">
+							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+						</a>
+					</span>
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+					data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+					<div class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+						<li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
+						<li class="nav-item dropdown">
+							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+								<strong>Servicios</strong>
+							</a>
+							<div id="services-dropdown" class="dropdown-menu"></div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link link text-black text-primary" href="eventos.html"><strong>Eventos</strong></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link link text-black text-primary" href="noticias.html"><strong>Noticias</strong></a>
+						</li>
+					</ul>
+					<div class="icons-menu">
+						<a class="iconfont-wrapper" href="tel:+53 555555555">
+							<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+						</a>
+						<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
+							<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
+						</a>
+						<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
+							<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</section>
 	
+	<!-- Embedded JavaScript for dynamic services menu -->
+	<script>
+		async function loadServices() {
+    try {
+        const response = await fetch('http://localhost:3000/api/get-services');
+        if (!response.ok) {
+            throw new Error('Failed to fetch services');
+        }
+        const services = await response.json();
 
-	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-		<div class="container">
-			<div class="navbar-brand">
-				<span class="navbar-logo">
-					<a href="Inicio.html">
-						<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
-					</a>
-				</span>
-				
-			</div>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-				<div class="hamburger">
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true"><li class="nav-item"><a class="nav-link link text-black text-primary show display-4" href="Inicio.html#top"><strong>Inicio</strong></a></li><li class="nav-item dropdown">
-						<a class="nav-link link text-black text-primary dropdown-toggle display-4" href="servicios.html" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside"><strong>Servicios</strong></a><div class="dropdown-menu" aria-labelledby="dropdown-587"><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Artes Gráficas</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Cartografía</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Catastro</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios Marinos</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Cartografía Náutica</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Ayuda a la Navegación</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Teledetección</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Geodesia y Topografía</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Metrología</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Mapificación Topográfica</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios Ingeniero-Geológicos</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Estudios y Soluciones Medioambientales</a><a class="text-black text-primary dropdown-item display-4" href="servicios.html">Otros Productos</a></div>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link link text-black dropdown-toggle show display-4" href="https://mobiri.se" aria-expanded="false" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside"><strong>Empresas</strong></a><div class="dropdown-menu show" aria-labelledby="dropdown-183" data-bs-popper="none"><a class="text-black dropdown-item text-primary display-4" href="page2.html#features024-3j">Geodesa</a><a class="text-black dropdown-item text-primary display-4" href="page2.html#features024-3p">Estudios Marinos</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">GeoSí</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Geocuba I.C.<br></a><div class="dropdown"><a class="text-black dropdown-item dropdown-toggle display-4" href="https://mobiri.se" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Dependencias Territoriales</a><div class="dropdown-menu dropdown-submenu" aria-labelledby="dropdown-881"><a class="text-black dropdown-item text-primary display-4" href="page2.html#features026-3b">Pinar del Río</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Matanzas<br></a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Cienfuegos</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Villa Clara / Santis Spíritus</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Camagüey / Ciego de Ávila</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Oriente Norte</a><a class="text-black dropdown-item display-4" href="https://mobiri.se">Oriente Sur</a></div></div></div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link link text-black text-primary display-4" href="eventos.html"><strong>Eventos</strong></a>
-					</li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="noticias.html"><strong>Noticias</strong></a></li></ul>
-				<div class="icons-menu">
-					<a class="iconfont-wrapper" href="tel:+53 555555555">
-						<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
-					</a>
-					<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
-						<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
-					</a>
-					<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
-						<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
-					</a>
-					
-				</div>
-				
-			</div>
-		</div>
-	</nav>
-</section>
+        // Populate the dropdown menu dynamically
+        const dropdown = document.getElementById('services-dropdown');
+        services.forEach(service => {
+            const item = document.createElement('a');
+            item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
+            item.textContent = service.nombre;
+            item.classList.add('dropdown-item');
+            dropdown.appendChild(item);
+        });
+    } catch (error) {
+        console.error('Error loading services:', error);
+    }
+}
+
+loadServices();
+
+	</script>
 
 <section data-bs-version="5.1" class="header09 startm5 cid-unW82Wu0EX mbr-parallax-background" id="header09-3o">	
     
