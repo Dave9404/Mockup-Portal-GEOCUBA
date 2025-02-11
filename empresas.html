@@ -25,296 +25,420 @@
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <style>
+    .company-logo-container {
+        position: relative;
+        width: 100%;
+        padding-bottom: 100%; /* Creates a square aspect ratio */
+        background-color: #f8f9fa;
+        overflow: hidden;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    .company-logo-container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+    }
+
+    .company-logo-container img.default-logo {
+        opacity: 0.5;
+        filter: grayscale(100%);
+    }
+
+    .company-card {
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+        overflow: hidden;
+    }
+
+    .company-card .image-wrapper {
+        padding: 1rem;
+        background-color: #f8f9fa;
+    }
+
+    .company-card .text-wrapper {
+        padding: 2rem;
+    }
+
+    .territorial-card {
+        height: 100%;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+    }
+
+    .territorial-logo-container {
+        position: relative;
+        width: 100%;
+        height: 150px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+    }
+
+    .territorial-logo-container img {
+        max-width: 80%;
+        max-height: 80%;
+        object-fit: contain;
+    }
+
+    .territorial-logo-container img.default-logo {
+        opacity: 0.5;
+        filter: grayscale(100%);
+    }
+  </style>
   
   
   
 </head>
 <body>
   
-	<section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
-		<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-			<div class="container">
-				<div class="navbar-brand">
-					<span class="navbar-logo">
-						<a href="Inicio.html">
-							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
-						</a>
-					</span>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
-					data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-					<div class="hamburger">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-						<li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
-								<strong>Servicios</strong>
-							</a>
-							<div id="services-dropdown" class="dropdown-menu"></div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link link text-black text-primary" href="eventos.html"><strong>Eventos</strong></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link link text-black text-primary" href="noticias.html"><strong>Noticias</strong></a>
-						</li>
-					</ul>
-					<div class="icons-menu">
-						<a class="iconfont-wrapper" href="tel:+53 555555555">
-							<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
-						</a>
-						<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
-							<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
-						</a>
-						<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
-							<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</section>
-	
-	<!-- Embedded JavaScript for dynamic services menu -->
-	<script>
-		async function loadServices() {
-    try {
+  <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+      <div class="container">
+        <div class="navbar-brand">
+          <span class="navbar-logo">
+            <a href="Inicio.html">
+              <img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+            </a>
+          </span>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+          data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+            <li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                <strong>Servicios</strong>
+              </a>
+              <div id="services-dropdown" class="dropdown-menu"></div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                <strong>Empresas</strong>
+              </a>
+              <div id="empresas-dropdown" class="dropdown-menu"></div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link text-black text-primary" href="eventos.html"><strong>Eventos</strong></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link text-black text-primary" href="noticias.html"><strong>Noticias</strong></a>
+            </li>
+          </ul>
+          <div class="icons-menu">
+            <a class="iconfont-wrapper" href="tel:+53 555555555">
+              <span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+            </a>
+            <a class="iconfont-wrapper" href="https://wa.me/53 555555555">
+              <span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
+            </a>
+            <a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
+              <span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </section>
+  
+  <!-- Embedded JavaScript for dynamic services menu -->
+  <script>
+    async function loadServices() {
+      try {
         const response = await fetch('http://localhost:3000/api/get-services');
         if (!response.ok) {
-            throw new Error('Failed to fetch services');
+          throw new Error('Failed to fetch services');
         }
         const services = await response.json();
 
         // Populate the dropdown menu dynamically
         const dropdown = document.getElementById('services-dropdown');
         services.forEach(service => {
-            const item = document.createElement('a');
-            item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
-            item.textContent = service.nombre;
-            item.classList.add('dropdown-item');
-            dropdown.appendChild(item);
+          const item = document.createElement('a');
+          item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
+          item.textContent = service.nombre;
+          item.classList.add('dropdown-item');
+          dropdown.appendChild(item);
         });
-    } catch (error) {
+      } catch (error) {
         console.error('Error loading services:', error);
+      }
+  }
+
+  loadServices();
+  async function loadEmpresas() {
+    try {
+      const response = await fetch('http://localhost:3000/api/get-empresas');
+      if (!response.ok) {
+        throw new Error('Failed to fetch empresas');
+      }
+      const empresas = await response.json();
+
+      // Populate the Empresas dropdown menu
+      const empresasDropdown = document.querySelector('#empresas-dropdown');
+      empresas.forEach(empresa => {
+        const item = document.createElement('a');
+        item.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa)}`;
+        item.textContent = empresa.empresa;
+        item.classList.add('dropdown-item');
+        empresasDropdown.appendChild(item);
+      });
+    } catch (error) {
+      console.error('Error loading empresas:', error);
     }
-}
+  }
 
-loadServices();
+  // Call the function to load empresas when the page loads
+  loadEmpresas();
+  </script>
 
-	</script>
+  <section data-bs-version="5.1" class="header09 startm5 cid-unW82Wu0EX mbr-parallax-background" id="header09-3o">    
+    <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(89, 5, 4);"></div>
+    <div class="container">
+      <div class="row">
+        <div class="content-wrap col-12 col-md-11">
+          <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1"><strong>Somos un Grupo Empresarial</strong></h1>
+          <h2 id="txtResumen" class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-5">El Grupo Empresarial GEOCUBA está compuesto por empresas especializadas y dependencias Territoriales, con presencia en todo el territorio nacional y cubriendo toda la gama de productos ofrecidas.</h2>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<section data-bs-version="5.1" class="header09 startm5 cid-unW82Wu0EX mbr-parallax-background" id="header09-3o">	
+  <!-- Specialized Companies Section -->
+  <section data-bs-version="5.1" class="features024 cid-unW3BK1deB" id="specialized-companies-section">
+    <div class="container">
+      <div id="specialized-companies">
+        <!-- Specialized companies will be inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Territorial Companies Section -->
+  <section data-bs-version="5.1" class="features026 cid-unVRhjRyq5 mbr-parallax-background" id="territorial-companies-section">
+    <div class="mbr-overlay" style="opacity: 0.9; background-color: rgb(89, 5, 4);"></div>
+    <div class="container">
+      <div class="row mb-5 justify-content-center" id="territorial-header">
+        <div class="col-12 mb-0 content-head">
+          <h3 class="mbr-section-title mbr-fonts-style align-center display-2">
+            <strong>Dependencias Territoriales</strong>
+          </h3>
+          <h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">
+            Con presencia en todo el territorio nacional y cubriendo toda la gama de productos ofrecidas.
+          </h5>
+        </div>
+      </div>
+      <div id="territorial-companies" class="row">
+        <!-- Territorial companies will be inserted here -->
+      </div>
+    </div>
+  </section>
+
+  <script>
+  async function loadCompanyDetails() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const companyName = params.get('empresa');
+      const response = await fetch('http://localhost:3000/api/get-empresas-details');
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch companies');
+      }
+      
+      const companies = await response.json();
+      let specializedCount = 0;
+      let territorialCount = 0;
+
+      // Clear existing content
+      document.getElementById('specialized-companies').innerHTML = '';
+      document.getElementById('territorial-companies').innerHTML = '';
+
+      if (companyName) {
+        // Find the specific company
+        const company = companies.find(c => c.empresa === decodeURIComponent(companyName));
+        if (company) {
+          // Hide territorial header if showing specialized company
+          if (company.especializada) {
+            document.getElementById('territorial-companies-section').style.display = 'none';
+          } else {
+            document.getElementById('specialized-companies-section').style.display = 'none';
+          }
+          
+          if (company.especializada) {
+            createSpecializedCompanyCard(company);
+          } else {
+            createTerritorialCompanyCard(company);
+          }
+          
+          document.getElementById('txtResumen').innerHTML = 
+            `Detalles de la empresa ${company.empresa}`;
+        }
+      } else {
+        // Show all companies
+        companies.forEach(company => {
+          if (company.especializada) {
+            specializedCount++;
+            createSpecializedCompanyCard(company);
+          } else {
+            territorialCount++;
+            createTerritorialCompanyCard(company);
+          }
+        });
+
+        document.getElementById('txtResumen').innerHTML = 
+          `El Grupo Empresarial GEOCUBA está compuesto por ${specializedCount} empresas especializadas y ${territorialCount} dependencias Territoriales, con presencia en todo el territorio nacional y cubriendo toda la gama de productos ofrecidas.`;
+      }
+    } catch (error) {
+      console.error('Error loading companies:', error);
+    }
+  }
+
+  function createSpecializedCompanyCard(company) {
+    const container = document.getElementById('specialized-companies');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'row justify-content-center align-items-center';
     
-	<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(89, 5, 4);"></div>
-	
-	<div class="container">
-		<div class="row">
-			<div class="content-wrap col-12 col-md-11">
-				<h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1"><strong>Somos un Grupo Empresarial</strong></h1>
-				<h2 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-5">El Grupo Empresarial GEOCUBA está compuesto por 4 empresas especializadas y 7 dependencias Territoriales, con presencia en todo el territorio nacional y cubriendo toda la gama de productos ofrecidas.</h2>
-				
-				
-			</div>
-		</div>
-	</div>
-</section>
-
-<section data-bs-version="5.1" class="features024 cid-unW3BK1deB" id="features024-3j">
-  
-
-  
-  
-
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12">
-        <div class="card-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-4 image-wrapper">
-              <img class="w-100" src="assets/images/logo-geodesa-100-1036x1036.jpeg" alt="GEODESA Logo">
+    const hasLogo = company.logo && company.logo.length > 0;
+    const logoSrc = hasLogo ? `data:image/png;base64,${company.logo}` : 'assets/images/icon2x-354x158.png';
+    
+    wrapper.innerHTML = `
+        <div class="col-12">
+            <div class="company-card">
+                <div class="row g-0">
+                    <div class="col-12 col-md-4 image-wrapper">
+                        <div class="company-logo-container">
+                            <img src="${logoSrc}" 
+                                alt="${company.empresa} Logo" 
+                                class="${hasLogo ? '' : 'default-logo'}"
+                                onerror="this.src='assets/images/icon2x-354x158.png'; this.classList.add('default-logo');">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="text-wrapper">
+                            <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+                                <strong>${company.empresa}</strong>
+                            </h5>
+                            <p class="price mbr-fonts-style mb-4 display-7">
+                                <strong>${company.descripcion || 'Información no disponible'}</strong>
+                            </p>
+                            <p class="mbr-text mbr-fonts-style mb-4 display-7">
+                                <strong>Dirección: </strong>${company.direccion || 'No disponible'}<br>
+                                <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
+                                <strong>E-Mail: </strong>${company.mail || 'No disponible'}
+                            </p>
+                            <div class="mbr-section-btn mt-3">
+                                ${company.sitio ? `
+                                    <a class="btn btn-lg btn-primary display-7" href="https://${company.sitio}" target="_blank">
+                                        <span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web
+                                    </a>
+                                ` : ''}
+                                ${company.mail ? `
+                                    <a class="btn btn-lg btn-primary display-7" href="mailto:${company.mail}">
+                                        <span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span>Correo
+                                    </a>
+                                ` : ''}
+                                ${company.telf ? `
+                                    <a class="btn btn-lg btn-primary display-7" href="tel:${company.telf}">
+                                        <span class="mobi-mbri mobi-mbri-phone mbr-iconfont mbr-iconfont-btn"></span>Llamar
+                                    </a>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
-                  <strong>GEODESA</strong></h5>
-                <p class="price mbr-fonts-style mb-4 display-7"><strong>
-                  Empresa Cartografía y Soluciones Geomáticas,&nbsp;</strong>Ofrece servicios exportables y al mercado nacional asociados a la Geomática y las Geotecnologías.</p>
-                <p class="mbr-text mbr-fonts-style mb-4 display-7"><strong>Dirección: </strong>Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12<br><strong>E-Mail: </strong>geodesa@geodesa.geocuba.cu</p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span>Correo</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-phone mbr-iconfont mbr-iconfont-btn"></span>Llamar</a></div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    `;
+    
+    container.appendChild(wrapper);
+  }
 
-<section data-bs-version="5.1" class="features024 cid-unW8vVxufZ" id="features024-3p">
-  
-
-  
-  
-
-  <div class="container">
-    <div class="row justify-content-center align-items-center">
-      <div class="col-12">
-        <div class="card-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-4 image-wrapper">
-              <img class="w-100" src="assets/images/logo-geoem-100-816x815.jpg" alt="GEOEM Logo">
+  function createTerritorialCompanyCard(company) {
+    const container = document.getElementById('territorial-companies');
+    const wrapper = document.createElement('div');
+    wrapper.className = 'col-12 col-md-6 col-lg-4 mb-4';
+    
+    const hasLogo = company.logo && company.logo.length > 0;
+    const logoSrc = hasLogo ? `data:image/png;base64,${company.logo}` : 'assets/images/icon2x-354x158.png';
+    
+    wrapper.innerHTML = `
+        <div class="territorial-card">
+            <div class="territorial-logo-container">
+                <img src="${logoSrc}" 
+                    alt="${company.empresa} Logo" 
+                    class="${hasLogo ? '' : 'default-logo'}"
+                    onerror="this.src='assets/images/icon2x-354x158.png'; this.classList.add('default-logo');">
             </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
-                  <strong>Estudios Marinos</strong></h5>
-                <p class="price mbr-fonts-style mb-4 display-7">Empresa líder en el mercado nacional y con experiencia internacional en las actividades de Cartografía Marina<br></p>
-                <p class="mbr-text mbr-fonts-style mb-4 display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span>Correo</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-phone mbr-iconfont mbr-iconfont-btn"></span>Llamar</a></div>
-              </div>
+            <div class="card-content">
+                <h5 class="card-title mbr-fonts-style display-5 mb-3">
+                    <strong>${company.empresa}</strong>
+                </h5>
+                <p class="card-text mbr-fonts-style display-7 mb-4">
+                    <strong>Dirección:</strong> ${company.direccion || 'No disponible'}<br>
+                    <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
+                    <strong>E-Mail:</strong> ${company.mail || 'No disponible'}
+                </p>
+                <div class="mbr-section-btn mt-3">
+                    ${company.sitio ? `
+                        <a class="btn btn-lg btn-primary display-7" href="https://${company.sitio}" target="_blank">
+                            <span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web
+                        </a>
+                    ` : ''}
+                    ${company.mail ? `
+                        <a class="btn btn-lg btn-primary display-7" href="mailto:${company.mail}">
+                            <span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span>Correo
+                        </a>
+                    ` : ''}
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    `;
+    
+    container.appendChild(wrapper);
+  }
 
-<section data-bs-version="5.1" class="features026 cid-unVRhjRyq5 mbr-parallax-background" id="features026-3b">
-	
+  // Load company details when the page loads
+  document.addEventListener('DOMContentLoaded', loadCompanyDetails);
+  </script>
 
-	
-	<div class="mbr-overlay" style="opacity: 0.9; background-color: rgb(89, 5, 4);"></div>
-	<div class="container">
-		<div class="row mb-5 justify-content-center">
-			<div class="col-12 mb-0 content-head">
-				<h3 class="mbr-section-title mbr-fonts-style align-center display-2">
-					<strong>Dependencias Territoriales</strong></h3>
-				<h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">El Grupo Empresarial GEOCUBA está compuesto por 7 dependencias Territoriales, con presencia en todo el territorio nacional y cubriendo toda la gama de productos ofrecidas.</h5>
-			</div>
-		</div>
-		<div class="row">
-			<div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb active">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5">
-							<strong>Pinar del Río</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5">
-							<strong>Matanzas</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5">
-							<strong>Cienfuegos</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5"><strong>Villa Clara / Santis Spíritus</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5"><strong>Camagüey / Ciego de Ávila</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5"><strong>Oriente Norte</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div><div class="item features-without-image col-12 col-md-6 col-lg-4 item-mb">
-				<div class="item-wrapper">
-					<div class="card-box align-left">
-						
-						<h5 class="card-title mbr-fonts-style display-5"><strong>Oriente Sur</strong></h5>
-						
-						<p class="card-text mbr-fonts-style display-7"><strong>Dirección:</strong> Calle Loma, entre 39 y 37, Plaza de la Revolución, La Habana.
-<br><strong>Teléfono: </strong>(+53) 7855 5409 al 12
-<br><strong>E-Mail:</strong> geodesa@geodesa.geocuba.cu</p>
-						<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>Sitio Web</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se"><span class="mobi-mbri mobi-mbri-letter mbr-iconfont mbr-iconfont-btn"></span></a></div>
-					</div>
-				</div>
-			</div>
-			
-			
-			
-		</div>
-	</div>
-</section>
-
-<section data-bs-version="5.1" class="footer4 cid-upSkgG6xcG" once="footers" id="footer04-44">
+  <section data-bs-version="5.1" class="footer4 cid-upSkgG6xcG" once="footers" id="footer04-44">
 
     
 
     
 
     <div class="container">
-        <div class="media-container-row align-center mbr-white">
-            <div class="col-12">
-                <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                    GEOCUBA 2024</p>
-            </div>
+      <div class="media-container-row align-center mbr-white">
+        <div class="col-12">
+          <p class="mbr-text mb-0 mbr-fonts-style display-7">
+            GEOCUBA 2024</p>
         </div>
+      </div>
     </div>
-</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/117942" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/html-builder.html">HTML Website Creator</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  </section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/117942" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/html-builder.html">HTML Website Creator</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
   
   
   <input name="animation" type="hidden">

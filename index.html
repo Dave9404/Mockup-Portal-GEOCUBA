@@ -41,7 +41,7 @@
 			<div class="container">
 				<div class="navbar-brand">
 					<span class="navbar-logo">
-						<a href="Inicio.html">
+						<a href="index.html">
 							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
 						</a>
 					</span>
@@ -96,54 +96,53 @@
 	
 	<!-- Embedded JavaScript for dynamic services menu -->
 	<script>
-		async function loadServices() {
-    try {
-        const response = await fetch('http://localhost:3000/api/get-services');
-        if (!response.ok) {
-            throw new Error('Failed to fetch services');
+        // Load dropdown data
+        async function loadDropdownData() {
+            try {
+                // Load services
+                const servicesResponse = await fetch('http://localhost:3000/api/get-services');
+                const services = await servicesResponse.json();
+                const servicesDropdown = document.getElementById('services-dropdown');
+                const servicesFragment = document.createDocumentFragment();
+                services.forEach(service => {
+                    const item = document.createElement('a');
+                    item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
+                    item.textContent = service.nombre;
+                    item.className = 'dropdown-item';
+                    servicesFragment.appendChild(item);
+                });
+                servicesDropdown.appendChild(servicesFragment);
+
+                // Load empresas
+                const empresasResponse = await fetch('http://localhost:3000/api/get-empresas');
+                const empresas = await empresasResponse.json();
+                const empresasDropdown = document.getElementById('empresas-dropdown');
+                const empresasFragment = document.createDocumentFragment();
+                empresas.forEach(empresa => {
+                    const item = document.createElement('a');
+                    item.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa)}`;
+                    item.textContent = empresa.empresa;
+                    item.className = 'dropdown-item';
+                    empresasFragment.appendChild(item);
+                });
+                empresasDropdown.appendChild(empresasFragment);
+            } catch (error) {
+                console.error('Error loading dropdown data:', error);
+            }
         }
-        const services = await response.json();
 
-        // Populate the dropdown menu dynamically
-        const dropdown = document.getElementById('services-dropdown');
-        services.forEach(service => {
-            const item = document.createElement('a');
-            item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
-            item.textContent = service.nombre;
-            item.classList.add('dropdown-item');
-            dropdown.appendChild(item);
+        // Initialize everything when the page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await loadDropdownData();
+                await loadPresentationData();
+                await loadNoticias();
+                await loadPreguntasFrecuentes();
+            } catch (error) {
+                console.error('Error initializing page:', error);
+            }
         });
-    } catch (error) {
-        console.error('Error loading services:', error);
-    }
-}
-
-loadServices();
-async function loadEmpresas() {
-    try {
-        const response = await fetch('http://localhost:3000/api/get-empresas');
-        if (!response.ok) {
-            throw new Error('Failed to fetch empresas');
-        }
-        const empresas = await response.json();
-
-        // Populate the Empresas dropdown menu
-        const empresasDropdown = document.querySelector('#empresas-dropdown');
-        empresas.forEach(empresa => {
-            const item = document.createElement('a');
-            item.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa)}`;
-            item.textContent = empresa.empresa;
-            item.classList.add('dropdown-item');
-            empresasDropdown.appendChild(item);
-        });
-    } catch (error) {
-        console.error('Error loading empresas:', error);
-    }
-}
-
-// Call the function to load empresas when the page loads
-loadEmpresas();
-	</script>
+    </script>
 	
 
 	<section data-bs-version="5.1" class="header1 cid-umNLy2kQAu mbr-parallax-background" id="header01-21">
@@ -216,55 +215,48 @@ loadEmpresas();
             <div class="col-12 col-md-9">
                 <div class="item-wrapper">
                     <ul class="nav nav-tabs mb-4" role="tablist">
-                        <li class="nav-item first mbr-fonts-style"><a class="nav-link mbr-fonts-style show active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab0" aria-selected="true"><strong>¿Quiénes somos?</strong></a></li>
-                        <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab1" aria-selected="true"><strong>Nuestro Objetivo</strong><br></a></li>
-                        <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab2" aria-selected="true"><strong>¿Qué hacemos?</strong></a></li>
-                        <li class="nav-item"><a class="nav-link mbr-fonts-style active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tabs1-2b_tab3" aria-selected="true"><strong>¿Cómo lo Logramos?</strong><br></a></li>
-                        <li class="nav-item">
-							<a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab"
-							   href="#tabs1-2b_tab4" aria-selected="false"><strong>Preguntas Frecuentes</strong></a>
-						</li>
-                        
+                        <li class="nav-item first mbr-fonts-style"><a class="nav-link mbr-fonts-style show active display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab1" aria-selected="true"><strong>¿Quiénes somos?</strong></a></li>
+                        <li class="nav-item"><a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab2" aria-selected="false"><strong>Nuestro Objetivo</strong><br></a></li>
+                        <li class="nav-item"><a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab3" aria-selected="false"><strong>¿Qué hacemos?</strong></a></li>
+                        <li class="nav-item"><a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab4" aria-selected="false"><strong>¿Cómo lo Logramos?</strong><br></a></li>
+                        <li class="nav-item"><a class="nav-link mbr-fonts-style display-4" role="tab" data-toggle="tab" data-bs-toggle="tab" href="#tab5" aria-selected="false"><strong>Preguntas Frecuentes</strong></a></li>
                     </ul>
                     <div class="tab-content">
-                        <div id="tabqsomos" class="tab-pane in active" role="tabpanel">
-							<div class="row">
-								<div class="col-md-12">
-									<p class="mbr-text mbr-fonts-style display-7">Default content</p>
-								</div>
-							</div>
-						</div>
-                        <div id="tab2" class="tab-pane" role="tabpanel">
+                        <div id="tab1" class="tab-pane fade show active" role="tabpanel">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="mbr-text mbr-fonts-style display-7">El objetivo fundamental de GEOCUBA es prestar servicios de excelencia que permitan satisfacer las expectativas y exigencias de los clientes y la sociedad en general tanto entidades cien por ciento cubanas, como de capital mixto o extranjero que operan en Cuba o fuera del país.</p>
+                                    <p id="tabqsomos" class="mbr-text mbr-fonts-style display-7">Default content</p>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab3" class="tab-pane" role="tabpanel">
+                        <div id="tab2" class="tab-pane fade" role="tabpanel">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="mbr-text mbr-fonts-style display-7">GEOCUBA brinda soluciones en las esferas de la Geodesia y la Topografía, el Catastro, los Estudios Marinos, la Hidrografía, la Oceanografía, la Preservación del Medio Ambiente, los Estudios para Prevenir Desastres y sus Planes de Reducción, la Ayuda a la Navegación, la Cartografía, la Fotogrametría, la Teledetección, los Sistemas de Información Geográfica, la Geología, la Geofísica, los Estudios Ecológicos, la Ingeniería de Costas y las Artes Gráficas.<br></p>
+                                    <p id="tabobjetivo" class="mbr-text mbr-fonts-style display-7">Default content</p>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab4" class="tab-pane" role="tabpanel">
+                        <div id="tab3" class="tab-pane fade" role="tabpanel">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <p class="mbr-text mbr-fonts-style display-7">Contamos con empresas especializadas y territoriales en todo el país, además dispone de técnicos y profesionales de las más variadas especialidades, actualizados en el uso de tecnologías de avanzada.</p>
+                                    <p id="tabqhacemos" class="mbr-text mbr-fonts-style display-7">Default content</p>
                                 </div>
                             </div>
                         </div>
-						<div id="tabs1-2b_tab4" class="tab-pane" role="tabpanel">
-							<div class="row">
-								<div class="col-md-12" id="preguntas-frecuentes-container">
-									<!-- Dynamic FAQ content will be added here -->
-								</div>
-							</div>
-						</div>
-						
-                        
-                        
+                        <div id="tab4" class="tab-pane fade" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p id="tabclogramos" class="mbr-text mbr-fonts-style display-7">Default content</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab5" class="tab-pane fade" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-12" id="preguntas-frecuentes-container">
+                                    <!-- Dynamic FAQ content will be added here -->
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -305,7 +297,7 @@ loadEmpresas();
 								</p>
 							</div>
 
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -323,7 +315,7 @@ loadEmpresas();
 									 Creación de mapas temáticos para diversas aplicaciones y estudios. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -341,7 +333,7 @@ loadEmpresas();
 									Gestión y registro de información territorial para planificación y desarrollo. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -359,7 +351,7 @@ loadEmpresas();
 									Investigación sobre ecosistemas marinos y recursos acuáticos para sostenibilidad. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -377,7 +369,7 @@ loadEmpresas();
 									Elaboración de mapas para navegación segura en cuerpos de agua. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -395,7 +387,7 @@ loadEmpresas();
 									Servicios y herramientas que facilitan el tránsito marítimo y terrestre. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 					<div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
@@ -413,7 +405,7 @@ loadEmpresas();
 									Obtención de datos a distancia para análisis ambiental y territorial. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div><div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
 						<div class="slide-content">
@@ -430,7 +422,7 @@ loadEmpresas();
 									Medición precisa de la superficie terrestre y sus características. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div><div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
 						<div class="slide-content">
@@ -447,7 +439,7 @@ loadEmpresas();
 									Estudio y aplicación de mediciones para garantizar la precisión en proyectos. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div><div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
 						<div class="slide-content">
@@ -464,7 +456,7 @@ loadEmpresas();
 									Creación de mapas detallados que representan relieve y características del terreno. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div><div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
 						<div class="slide-content">
@@ -480,7 +472,7 @@ loadEmpresas();
 									Análisis de terrenos para proyectos de construcción e infraestructura. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div><div class="embla__slide slider-image item" style="margin-left: 1rem; margin-right: 1rem;">
 						<div class="slide-content">
@@ -496,7 +488,7 @@ loadEmpresas();
 									Evaluación y propuestas para la conservación y gestión ambiental. 
 								</p>
 							</div>
-							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" target="_blank">Saber Más</a></div>
+							<div class="mbr-section-btn item-footer mt-2"><a href="" class="btn item-btn btn-primary display-7" style="display: none;" target="_blank">Saber Más</a></div>
 						</div>
 					</div>
 				</div>
@@ -643,106 +635,69 @@ loadEmpresas();
   
   <input name="animation" type="hidden">
   <script>
-	async function loadPresentationData() {
+		async function loadPresentationData() {
     try {
         const response = await fetch('http://localhost:3000/api/get-presentacion');
-        
-        // Ensure response is successful
         if (!response.ok) throw new Error('Failed to fetch presentation data');
 
         const data = await response.json();
-        // console.log('Full Data Response:', data);
-
-        // Check that the response is an array and has at least one item
         if (!Array.isArray(data) || data.length === 0) {
             console.error('Presentation data is empty.');
             return;
         }
 
-        // Extract the first object from the data array
-        const presentation = data[0];
+        window.presentation = data[0];
 
-        // Debug log to confirm structure
-        // console.log('Presentation object:', presentation);
-
-        // ** Set the title **
         const titleElement = document.getElementById('main-title');
         if (titleElement) {
-            titleElement.innerHTML = presentation.titulo || 'Default Title';
-        } else {
-            console.warn('Element with id "main-title" not found.');
+            titleElement.innerHTML = `<strong>${presentation.titulo || 'Default Title'}</strong>`;
         }
 
-        // ** Set the description **
         const descriptionElement = document.getElementById('main-description');
         if (descriptionElement) {
             descriptionElement.textContent = presentation.descripcion || 'Default description text.';
-        } else {
-            console.warn('Element with id "main-description" not found.');
         }
 
-        // ** Handle the image (if it exists) **
         const imageElement = document.getElementById('main-image');
-        if (imageElement) {
-            if (presentation.img && presentation.img.data) {
+        if (imageElement && presentation.img) {
+            if (typeof presentation.img === 'string') {
+                imageElement.src = presentation.img;
+            } else if (presentation.img.data) {
                 const base64Image = btoa(String.fromCharCode(...new Uint8Array(presentation.img.data)));
-                imageElement.src = 'data:image/jpeg;base64,' + base64Image;
-            } else {
-                console.warn('Image data is not available.');
+                imageElement.src = `data:image/jpeg;base64,${base64Image}`;
             }
-        } else {
-            console.warn('Element with id "main-image" not found.');
         }
 
-        // ** Set content for tabs **
-		updateTabContent()
-
-
-
-        // console.log('Presentation data loaded successfully.');
+        updateTabContent();
     } catch (error) {
         console.error('Error loading presentation data:', error);
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    loadPresentationData();
-});
-
 function updateTabContent() {
-    const tab1Element = document.getElementById('tabqsomos');
-    if (tab1Element) {
-        tab1Element.textContent = presentation.qsomos || 'Default tab content';
-        console.log('Updated tabqsomos content');
-    } else {
-        console.warn('Element with id "tabqsomos" not found');
+    if (!presentation) {
+        console.error('Presentation data not available');
+        return;
     }
 
-    const tab2Element = document.querySelector('#tab2 p');
-    if (tab2Element) {
-        tab2Element.textContent = presentation.objetivo || 'Default tab content';
-        console.log('Updated tab2 content');
-    } else {
-        console.warn('Element with id "tab2" not found');
-    }
+    // Map of element IDs to presentation data fields
+    const tabContent = {
+        'tabqsomos': presentation.qsomos,
+        'tabobjetivo': presentation.objetivo,
+        'tabqhacemos': presentation.qhacemos,
+        'tabclogramos': presentation.clogramos
+    };
 
-    const tab3Element = document.querySelector('#tab3 p');
-    if (tab3Element) {
-        tab3Element.textContent = presentation.qhacemos || 'Default tab content';
-        console.log('Updated tab3 content');
-    } else {
-        console.warn('Element with id "tab3" not found');
-    }
-
-    const tab4Element = document.querySelector('#tab4 p');
-    if (tab4Element) {
-        tab4Element.textContent = presentation.clogramos || 'Default tab content';
-        console.log('Updated tab4 content');
-    } else {
-        console.warn('Element with id "tab4" not found');
-    }
+    // Update each tab's content
+    Object.entries(tabContent).forEach(([elementId, content]) => {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.textContent = content || 'Contenido no disponible';
+        } else {
+            console.warn(`Element with id ${elementId} not found`);
+        }
+    });
 }
-
 
 async function loadNoticias() {
     try {
@@ -750,39 +705,91 @@ async function loadNoticias() {
         if (!response.ok) throw new Error('Failed to fetch noticias');
 
         const noticias = await response.json();
+        
+        // Helper function to safely convert image data
+        const getImageSrc = (imagen) => {
+            if (!imagen) return '';
+            if (typeof imagen === 'string') return imagen;
+            if (imagen.data) {
+                try {
+                    const bytes = new Uint8Array(imagen.data);
+                    const binary = bytes.reduce((acc, byte) => acc + String.fromCharCode(byte), '');
+                    return `data:image/jpeg;base64,${btoa(binary)}`;
+                } catch (error) {
+                    console.error('Error converting image:', error);
+                    return '';
+                }
+            }
+            return '';
+        };
 
-        // Populate highlighted news (first item)
-        if (noticias.length > 0) {
+        // Handle the highlighted news
+        if (noticias && noticias.length > 0) {
             const highlighted = noticias[0];
-            document.getElementById('highlighted-news-img').src = highlighted.imagen;
-            document.getElementById('highlighted-news-title').textContent = highlighted.titulo;
-            document.getElementById('highlighted-news-description').textContent = highlighted.noticia;
-            document.getElementById('highlighted-news-link').href = highlighted.link;
+            
+            // Update highlighted news elements
+            const elements = {
+                img: document.getElementById('highlighted-news-img'),
+                title: document.getElementById('highlighted-news-title'),
+                desc: document.getElementById('highlighted-news-description'),
+                link: document.getElementById('highlighted-news-link')
+            };
+
+            // Handle image
+            if (elements.img) {
+                const imgSrc = getImageSrc(highlighted.imagen);
+                if (imgSrc) {
+                    elements.img.src = imgSrc;
+                }
+            }
+
+            // Handle title and description
+            if (elements.title) elements.title.textContent = highlighted.titulo || '';
+            if (elements.desc) elements.desc.textContent = highlighted.noticia || '';
+            
+            // Handle link
+            if (elements.link) {
+                if (highlighted.link && typeof highlighted.link === 'string') {
+                    elements.link.href = highlighted.link;
+                    elements.link.style.display = '';
+                } else {
+                    elements.link.style.display = 'none';
+                }
+            }
         }
 
-        // Populate other news
+        // Handle the news list
         const newsList = document.getElementById('news-list');
-        noticias.slice(1).forEach(noticia => {
-            const card = document.createElement('div');
-            card.className = 'col-12 col-md-4';
+        if (newsList && noticias && noticias.length > 1) {
+            // Clear existing content
+            newsList.innerHTML = '';
+            
+            // Create and append new cards
+            const newsCards = noticias.slice(1).map(noticia => {
+                const imgSrc = getImageSrc(noticia.imagen);
+                const card = document.createElement('div');
+                card.className = 'col-12 col-md-4';
+                card.innerHTML = `
+                    <div class="card">
+                        ${imgSrc ? `<img class="card-img-top" src="${imgSrc}" alt="${noticia.titulo || 'Noticia'}">` : ''}
+                        <div class="card-body">
+                            <h5 class="card-title">${noticia.titulo || ''}</h5>
+                            <p class="card-text">${noticia.noticia || ''}</p>
+                            ${noticia.link && typeof noticia.link === 'string' 
+                                ? `<a href="${noticia.link}" class="btn btn-primary">Leer más</a>` 
+                                : ''}
+                        </div>
+                    </div>`;
+                return card;
+            });
 
-            card.innerHTML = `
-                <div class="card">
-                    <img class="card-img-top" src="${noticia.imagen}" alt="${noticia.titulo}">
-                    <div class="card-body">
-                        <h5 class="card-title">${noticia.titulo}</h5>
-                        <p class="card-text">${noticia.noticia}</p>
-                        <a href="${noticia.link}" class="btn btn-primary">Leer más</a>
-                    </div>
-                </div>`;
-            newsList.appendChild(card);
-        });
+            // Append all cards at once
+            newsList.append(...newsCards);
+        }
     } catch (error) {
         console.error('Error loading noticias:', error);
     }
 }
-
-loadNoticias();	
 
 async function loadPreguntasFrecuentes() {
     try {
@@ -791,24 +798,32 @@ async function loadPreguntasFrecuentes() {
 
         const preguntas = await response.json();
         const container = document.getElementById('preguntas-frecuentes-container');
-
-        preguntas.forEach(pregunta => {
-            const faqItem = document.createElement('div');
-            faqItem.className = 'mbr-text mbr-fonts-style display-7';
-
-            faqItem.innerHTML = `
-                <h5 class="faq-question"><strong>${pregunta.pregunta}</strong></h5>
-                <p class="faq-answer">${pregunta.respuesta}</p>`;
-            container.appendChild(faqItem);
-        });
+        if (container && Array.isArray(preguntas)) {
+            container.innerHTML = ''; // Clear existing content
+            preguntas.forEach(pregunta => {
+                const faqItem = document.createElement('div');
+                faqItem.className = 'mbr-text mbr-fonts-style display-7';
+                faqItem.innerHTML = `
+                    <h5 class="faq-question"><strong>${pregunta.pregunta || ''}</strong></h5>
+                    <p class="faq-answer">${pregunta.respuesta || ''}</p>`;
+                container.appendChild(faqItem);
+            });
+        }
     } catch (error) {
         console.error('Error loading preguntas frecuentes:', error);
     }
 }
 
-loadPreguntasFrecuentes();
-
-
+// Single initialization point
+document.addEventListener('DOMContentLoaded', async () => {
+    try {
+        await loadPresentationData(); // Load presentation first since it updates the tabs
+        await loadNoticias();
+        await loadPreguntasFrecuentes();
+    } catch (error) {
+        console.error('Error during initialization:', error);
+    }
+});
 	</script>
   </body>
 </html>

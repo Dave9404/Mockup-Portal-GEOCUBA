@@ -102,7 +102,135 @@ app.get('/api/get-empresas', async (req, res) => {
     }
 });
 
+/**
+ * Endpoint to get all companies with their details
+ * Table: sitio.empresas
+ */
+app.get('/api/get-empresas-details', async (req, res) => {
+    try {
+        const result = await pool.query(`
+            SELECT id, empresa, descripcion, direccion, telf, mail, sitio, logo, especializada 
+            FROM sitio.empresas
+            ORDER BY especializada DESC, empresa ASC
+        `);
+        
+        // Transform the binary logo data to base64 for frontend use
+        const companies = result.rows.map(company => ({
+            ...company,
+            logo: company.logo ? company.logo.toString('base64') : null
+        }));
 
+        res.json(companies);
+    } catch (error) {
+        console.error('Error fetching company details:', error);
+        res.status(500).json({ error: 'Database error.' });
+    }
+});
+
+/**
+ * Endpoint to get service details and its product lines
+ * Tables: sitio.productos_servicios, sitio.lineaprod
+ */
+app.get('/api/get-service/:nombre', async (req, res) => {
+    try {
+        const { nombre } = req.params;
+        
+        // Get service details
+        const serviceResult = await pool.query(`
+            SELECT id, nombre, descripcion, contacto, img, img2
+            FROM sitio.productos_servicios 
+            WHERE nombre = $1
+        `, [nombre]);
+        
+        if (serviceResult.rows.length === 0) {
+            return res.status(404).json({ error: 'Service not found' });
+        }
+        
+        const service = serviceResult.rows[0];
+        
+        // Get product lines for this service
+        const productLinesResult = await pool.query(`
+            SELECT id, titulo, descripcion, img 
+            FROM sitio.lineaprod 
+            WHERE servicioid = $1
+            ORDER BY id ASC
+        `, [service.id]);
+        
+        // Return both service details and product lines
+        res.json({
+            service: service,
+            productLines: productLinesResult.rows
+        });
+    } catch (error) {
+        console.error('Error fetching service data:', error);
+        res.status(500).json({ error: 'Database error.' });
+    }
+});
+
+// Endpoint para obtener eventos
+app.get('/api/get-eventos', async (req, res) => {
+    try {
+        const query = `
+            SELECT id, titulo, 
+                   TO_CHAR(fechai, 'DD/MM/YYYY') as fechai,
+                   TO_CHAR(fechaf, 'DD/MM/YYYY') as fechaf,
+                   descripcion, link, descarga, lugar, 
+                   encode(imagen, 'base64') as imagen
+            FROM sitio.eventos
+            ORDER BY fechai DESC;
+        `;
+        
+        const result = await pool.query(query);
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error al obtener eventos:', error);
+        res.status(500).json({ error: 'Error al obtener los eventos' });
+    }
+});
+
+// Endpoint para obtener noticias
+app.get('/api/get-noticias', async (req, res) => {
+    try {
+        const query = `
+            SELECT id, titulo, noticia, link, destacar, 
+                   encode(imagen, 'base64') as imagen,
+                   TO_CHAR(fecha, 'DD/MM/YYYY') as fecha 
+            FROM sitio.noticias 
+            ORDER BY fecha DESC 
+            LIMIT 3;
+        `;
+        
+        const result = await pool.query(query);
+        res.json(result.rows);
+    } catch (error) {
+        console.error('Error al obtener noticias:', error);
+        res.status(500).json({ error: 'Error al obtener las noticias' });
+    }
+});
+
+// Endpoint para obtener una noticia específica
+app.get('/api/get-noticia/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const query = `
+            SELECT id, titulo, noticia, link, destacar, 
+                   encode(imagen, 'base64') as imagen,
+                   TO_CHAR(fecha, 'DD/MM/YYYY') as fecha 
+            FROM sitio.noticias 
+            WHERE id = $1;
+        `;
+        
+        const result = await pool.query(query, [id]);
+        if (result.rows.length === 0) {
+            res.status(404).json({ error: 'Noticia no encontrada' });
+            return;
+        }
+        res.json(result.rows[0]);
+    } catch (error) {
+        console.error('Error al obtener la noticia:', error);
+        res.status(500).json({ error: 'Error al obtener la noticia' });
+    }
+});
 
 // Existing endpoint for general query execution (if still needed)
 app.post('/api/query', async (req, res) => {

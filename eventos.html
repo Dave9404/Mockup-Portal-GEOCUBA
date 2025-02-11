@@ -1,217 +1,296 @@
 <!DOCTYPE html>
-<html  >
+<html>
 <head>
-  <!-- Site made with Mobirise Website Builder v5.9.11, https://mobirise.com -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="generator" content="Mobirise v5.9.11, mobirise.com">
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image:src" content="assets/images/eventos-meta.png">
-  <meta property="og:image" content="assets/images/eventos-meta.png">
-  <meta name="twitter:title" content="Eventos GEOCUBA">
-  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/icon2x-354x158.png" type="image/x-icon">
-  <meta name="description" content="">
-  
-  
-  <title>Eventos GEOCUBA</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="assets/images/icon2x-354x158.png" type="image/x-icon">
+    <meta name="description" content="">
+    <title>Eventos - GEOCUBA</title>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        .event-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
 
-  
-  
-  
+        .event-content {
+            display: flex;
+            flex-direction: row;
+            min-height: 400px;
+        }
+
+        .event-text {
+            flex: 1;
+            padding: 2rem;
+        }
+
+        .event-image {
+            flex: 1;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .event-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .event-buttons {
+            margin-top: 1.5rem;
+        }
+
+        .event-buttons .btn {
+            margin-right: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-content {
+                flex-direction: column;
+            }
+            
+            .event-image {
+                min-height: 300px;
+            }
+        }
+    </style>
 </head>
 <body>
-  
-  <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
-		<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
-			<div class="container">
-				<div class="navbar-brand">
-					<span class="navbar-logo">
-						<a href="Inicio.html">
-							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
-						</a>
-					</span>
-				</div>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
-					data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
-					aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-					<div class="hamburger">
-						<span></span>
-						<span></span>
-						<span></span>
-						<span></span>
-					</div>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
-						<li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
-						<li class="nav-item dropdown">
-							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
-								<strong>Servicios</strong>
-							</a>
-							<div id="services-dropdown" class="dropdown-menu"></div>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link link text-black text-primary" href="eventos.html"><strong>Eventos</strong></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link link text-black text-primary" href="noticias.html"><strong>Noticias</strong></a>
-						</li>
-					</ul>
-					<div class="icons-menu">
-						<a class="iconfont-wrapper" href="tel:+53 555555555">
-							<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
-						</a>
-						<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
-							<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
-						</a>
-						<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
-							<span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</section>
-	
-	<!-- Embedded JavaScript for dynamic services menu -->
-	<script>
-		async function loadServices() {
-    try {
-        const response = await fetch('http://localhost:3000/api/get-services');
-        if (!response.ok) {
-            throw new Error('Failed to fetch services');
+    <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="index.html">
+                            <img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+                        </a>
+                    </span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown nav-right" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary" href="index.html">
+                                <strong>Inicio</strong>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <strong>Servicios</strong>
+                            </a>
+                            <div id="services-dropdown" class="dropdown-menu"></div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                                <strong>Empresas</strong>
+                            </a>
+                            <div id="empresas-dropdown" class="dropdown-menu"></div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary" href="eventos.html">
+                                <strong>Eventos</strong>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary" href="noticias.html">
+                                <strong>Noticias</strong>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="icons-menu">
+                        <a class="iconfont-wrapper" href="tel:+53 555555555">
+                            <span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
+                        </a>
+                        <a class="iconfont-wrapper" href="https://wa.me/53 555555555">
+                            <span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
+                        </a>
+                        <a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
+                            <span class="p-2 mbr-iconfont mobi-mbri-letter mobi-mbri"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <!-- Header Section -->
+    <section data-bs-version="5.1" class="header09 startm5 cid-unWlwWpvkT mbr-parallax-background" id="header09-3s">
+        <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 27, 79);"></div>
+        <div class="container">
+            <div class="row">
+                <div class="content-wrap col-12 col-md-11">
+                    <h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1">
+                        <strong>Eventos</strong>
+                    </h1>
+                    <h2 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-5">
+                        Explora los Eventos Clave donde GEOCUBA Comparte Innovación y Experiencia en Geociencias y Artes Gráficas.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventos Section -->
+    <section data-bs-version="5.1" class="features4 cid-tJS4jHBHih" id="features4-3">
+        <div class="container">
+            <div class="row" id="eventos-container">
+                <!-- Events will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Modern approach using MutationObserver for dynamic menu loading
+        async function loadDropdownData() {
+            try {
+                // Load services
+                const servicesResponse = await fetch('http://localhost:3000/api/get-services');
+                const services = await servicesResponse.json();
+                const servicesDropdown = document.getElementById('services-dropdown');
+                
+                // Use DocumentFragment for better performance
+                const servicesFragment = document.createDocumentFragment();
+                services.forEach(service => {
+                    const item = document.createElement('a');
+                    item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
+                    item.textContent = service.nombre;
+                    item.className = 'dropdown-item';
+                    servicesFragment.appendChild(item);
+                });
+                servicesDropdown.appendChild(servicesFragment);
+
+                // Load empresas
+                const empresasResponse = await fetch('http://localhost:3000/api/get-empresas');
+                const empresas = await empresasResponse.json();
+                const empresasDropdown = document.getElementById('empresas-dropdown');
+                
+                // Use DocumentFragment for better performance
+                const empresasFragment = document.createDocumentFragment();
+                empresas.forEach(empresa => {
+                    const item = document.createElement('a');
+                    item.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa)}`;
+                    item.textContent = empresa.empresa;
+                    item.className = 'dropdown-item';
+                    empresasFragment.appendChild(item);
+                });
+                empresasDropdown.appendChild(empresasFragment);
+            } catch (error) {
+                console.error('Error loading dropdown data:', error);
+            }
         }
-        const services = await response.json();
 
-        // Populate the dropdown menu dynamically
-        const dropdown = document.getElementById('services-dropdown');
-        services.forEach(service => {
-            const item = document.createElement('a');
-            item.href = `servicios.html?service=${encodeURIComponent(service.nombre)}`;
-            item.textContent = service.nombre;
-            item.classList.add('dropdown-item');
-            dropdown.appendChild(item);
+        async function loadEventos() {
+            try {
+                const response = await fetch('http://localhost:3000/api/get-eventos');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const eventos = await response.json();
+                
+                const container = document.getElementById('eventos-container');
+                container.innerHTML = ''; // Clear existing content
+                
+                // Use DocumentFragment for better performance
+                const fragment = document.createDocumentFragment();
+                
+                eventos.forEach(evento => {
+                    const eventCard = document.createElement('div');
+                    eventCard.className = 'col-12';
+                    
+                    eventCard.innerHTML = `
+                        <div class="event-card">
+                            <div class="event-content">
+                                <div class="event-text">
+                                    <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5">
+                                        <strong>${evento.titulo}</strong>
+                                    </h3>
+                                    <p class="price mbr-fonts-style mb-3 display-7">
+                                        En ${evento.lugar}, desde el ${evento.fechai} hasta el ${evento.fechaf}
+                                    </p>
+                                    <p class="mbr-text mbr-fonts-style mb-3 display-7">
+                                        ${evento.descripcion}
+                                    </p>
+                                    <div class="event-buttons">
+                                        ${evento.link ? `
+                                            <a href="${evento.link}" target="_blank" class="btn btn-lg btn-primary display-7">
+                                                <span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>
+                                                Más Información
+                                            </a>
+                                        ` : ''}
+                                        ${evento.descarga ? `
+                                            <a href="${evento.descarga}" target="_blank" class="btn btn-lg btn-primary display-7">
+                                                <span class="mobi-mbri mobi-mbri-download mbr-iconfont mbr-iconfont-btn"></span>
+                                                Descarga PDF
+                                            </a>
+                                        ` : ''}
+                                    </div>
+                                </div>
+                                <div class="event-image">
+                                    <img src="data:image/png;base64,${evento.imagen}" alt="${evento.titulo}">
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    fragment.appendChild(eventCard);
+                });
+                
+                container.appendChild(fragment);
+                
+            } catch (error) {
+                console.error('Error loading eventos:', error);
+                // Show error message to user
+                const container = document.getElementById('eventos-container');
+                container.innerHTML = `
+                    <div class="col-12">
+                        <div class="alert alert-danger" role="alert">
+                            Error al cargar los eventos. Por favor, intente más tarde.
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize everything when the page loads
+        window.addEventListener('load', () => {
+            loadDropdownData();
+            loadEventos();
         });
-    } catch (error) {
-        console.error('Error loading services:', error);
-    }
-}
+    </script>
 
-loadServices();
-
-	</script>
-
-<section data-bs-version="5.1" class="header09 startm5 cid-unWlwWpvkT mbr-parallax-background" id="header09-3s">	
-    
-	<div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(0, 27, 79);"></div>
-	
-	<div class="container">
-		<div class="row">
-			<div class="content-wrap col-12 col-md-11">
-				<h1 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-1"><strong>Eventos</strong></h1>
-				<h2 class="mbr-section-title mbr-fonts-style mbr-white mb-4 display-5"><div><br></div><div>Explora los Eventos Clave donde GEOCUBA Comparte Innovación y Experiencia en Geociencias y Artes Gráficas.</div></h2>
-				
-				
-			</div>
-		</div>
-	</div>
-</section>
-
-<section data-bs-version="5.1" class="news06 cid-unVRPBMceS" id="news06-3e">
-  
-
-  
-  
-
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-12 mb-5 content-head">
-        <h3 class="mbr-fonts-style align-center mb-0 mbr-section-maintitle display-2">
-          <strong>Nuestros Eventos</strong></h3>
-        
-      </div>
-    </div>
-    <div class="row justify-content-center align-items-center item features-image">
-      <div class="col-12 ">
-        <div class="item-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-6 image-wrapper">
-              <img class="w-100" src="assets/images/419257607-363735693298123-1874980039053956774-n-1080x916.jpg" alt="Mobirise Website Builder">
-            </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h5 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>XIX Feria Internacional de Geomatica</strong></h5>
-                <p class="price mbr-fonts-style mb-3 display-7">
-                  Julio 12-13, 2025
-                </p>
-                <p class="mbr-text mbr-fonts-style mb-3 display-7">
-                  Elevate your portrait photography to new heights. From candid street shots to controlled studio
-                  setups, you'll master the art of capturing compelling portraits.
-                </p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se">Más Información</a> <a class="btn btn-lg btn-primary display-7" href="https://mobiri.se">Descargar PDF</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center align-items-center item features-image">
-      <div class="col-12">
-        <div class="item-wrapper">
-          <div class="row">
-            <div class="col-12 col-md-12 col-lg-6 image-wrapper">
-              <img class="w-100" src="assets/images/-jtm8921-1256x600.jpeg" alt="Mobirise Website Builder">
-            </div>
-            <div class="col-12 col-lg col-md-12">
-              <div class="text-wrapper align-left">
-                <h5 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>X Convención Internacional de Agrimensura 2024</strong></h5>
-                <p class="price mbr-fonts-style mb-3 display-7">
-                  Hotel TRYP Habana Libre, en La Habana, Cuba, del 25 al 30 de septiembre. 
-                </p>
-                <p class="mbr-text mbr-fonts-style mb-3 display-7">
-                  La Unión Nacional de Arquitectos e Ingenieros de la Construcción de Cuba (UNAICC), la Sociedad Latinoamericana de Percepción Remota y Sistemas de Información Espacial (SELPER) Capitulo Cuba, la Sociedad de Geociencias y la Química de la UNAICC, La Comisión Técnica de Geodesia, Topografía, Fotogrametría, Cartografía.&nbsp;</p>
-                <div class="mbr-section-btn mt-3"><a class="btn btn-lg btn-primary display-7" href="https://mobiri.se">Más Información</a></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section data-bs-version="5.1" class="footer4 cid-upSkgG6xcG" once="footers" id="footer04-44">
-
-    
-
-    
-
-    <div class="container">
-        <div class="media-container-row align-center mbr-white">
-            <div class="col-12">
-                <p class="mbr-text mb-0 mbr-fonts-style display-7">
-                    GEOCUBA 2024</p>
-            </div>
-        </div>
-    </div>
-</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/117942" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/drag-drop-website-builder.html">Drag and Drop Website Builder</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
-  
-  
-  <input name="animation" type="hidden">
-  </body>
+    <!-- Load scripts asynchronously to prevent blocking -->
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js" defer></script>
+    <script src="assets/parallax/jarallax.js" defer></script>
+    <script src="assets/smoothscroll/smooth-scroll.js" defer></script>
+    <script src="assets/ytplayer/index.js" defer></script>
+    <script src="assets/dropdown/js/navbar-dropdown.js" defer></script>
+    <script src="assets/theme/js/script.js" defer></script>
+</body>
 </html>
