@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const { Pool } = require('pg');
 const cors = require('cors');
+const helmet = require('helmet');
+const timeout = require('connect-timeout');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,10 +19,31 @@ const pool = new Pool({
 });
 
 // Middleware setup
-app.use(cors());
-app.use(express.json());
+app.use(cors()); // Allow CORS requests
+app.use(helmet()); // Security headers
+app.use(express.json({ limit: '1kb' })); // Secure payload size
+app.use(express.urlencoded({ extended: true, limit: '1kb' }));
 
-// New API endpoint to get services
+// Apply Rate Limiting only to API routes
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 100, // Max 100 requests per minute per IP
+    message: 'Too many requests, please try again later.',
+});
+app.use('/api/', limiter);
+
+// Apply Timeout Middleware (After Essentials)
+app.use(timeout('10s'));
+
+// Handle Timeout Errors
+app.use((req, res, next) => {
+    if (!req.timedout) next();
+    else res.status(408).json({ error: 'Request timed out. Please try again.' });
+});
+
+// API Endpoints
+
+// Get presentation data
 app.get('/api/get-presentacion', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -33,10 +57,7 @@ app.get('/api/get-presentacion', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get highlighted news.
- * Table: sitio.noticias
- */
+// Get highlighted news
 app.get('/api/get-noticias-destacadas', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -52,10 +73,7 @@ app.get('/api/get-noticias-destacadas', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get services data.
- * Table: sitio.productos_servicios
- */
+// Get services data
 app.get('/api/get-services', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -70,10 +88,7 @@ app.get('/api/get-services', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get FAQ (Preguntas Frecuentes).
- * Table: sitio.preguntas
- */
+// Get FAQ (Preguntas Frecuentes)
 app.get('/api/get-preguntas-frecuentes', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -88,10 +103,7 @@ app.get('/api/get-preguntas-frecuentes', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get empresas data.
- * Table: sitio.empresas (Assumed based on existing endpoint)
- */
+// Get empresas data
 app.get('/api/get-empresas', async (req, res) => {
     try {
         const result = await pool.query('SELECT empresa FROM sitio.empresas ORDER BY id');
@@ -102,10 +114,7 @@ app.get('/api/get-empresas', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get all companies with their details
- * Table: sitio.empresas
- */
+// Get all companies with details
 app.get('/api/get-empresas-details', async (req, res) => {
     try {
         const result = await pool.query(`
@@ -114,7 +123,7 @@ app.get('/api/get-empresas-details', async (req, res) => {
             ORDER BY especializada DESC, empresa ASC
         `);
         
-        // Transform the binary logo data to base64 for frontend use
+        // Transform binary logo data to base64 for frontend use
         const companies = result.rows.map(company => ({
             ...company,
             logo: company.logo ? company.logo.toString('base64') : null
@@ -127,15 +136,11 @@ app.get('/api/get-empresas-details', async (req, res) => {
     }
 });
 
-/**
- * Endpoint to get service details and its product lines
- * Tables: sitio.productos_servicios, sitio.lineaprod
- */
+// Get service details and its product lines
 app.get('/api/get-service/:nombre', async (req, res) => {
     try {
         const { nombre } = req.params;
         
-        // Get service details
         const serviceResult = await pool.query(`
             SELECT id, nombre, descripcion, contacto, img, img2
             FROM sitio.productos_servicios 
@@ -148,7 +153,6 @@ app.get('/api/get-service/:nombre', async (req, res) => {
         
         const service = serviceResult.rows[0];
         
-        // Get product lines for this service
         const productLinesResult = await pool.query(`
             SELECT id, titulo, descripcion, img 
             FROM sitio.lineaprod 
@@ -156,7 +160,6 @@ app.get('/api/get-service/:nombre', async (req, res) => {
             ORDER BY id ASC
         `, [service.id]);
         
-        // Return both service details and product lines
         res.json({
             service: service,
             productLines: productLinesResult.rows
@@ -167,7 +170,7 @@ app.get('/api/get-service/:nombre', async (req, res) => {
     }
 });
 
-// Endpoint para obtener eventos
+// Get events data
 app.get('/api/get-eventos', async (req, res) => {
     try {
         const query = `
@@ -188,7 +191,7 @@ app.get('/api/get-eventos', async (req, res) => {
     }
 });
 
-// Endpoint para obtener noticias
+// Get latest news
 app.get('/api/get-noticias', async (req, res) => {
     try {
         const query = `
@@ -208,7 +211,7 @@ app.get('/api/get-noticias', async (req, res) => {
     }
 });
 
-// Endpoint para obtener una noticia específica
+// Get specific news by ID
 app.get('/api/get-noticia/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -222,8 +225,7 @@ app.get('/api/get-noticia/:id', async (req, res) => {
         
         const result = await pool.query(query, [id]);
         if (result.rows.length === 0) {
-            res.status(404).json({ error: 'Noticia no encontrada' });
-            return;
+            return res.status(404).json({ error: 'Noticia no encontrada' });
         }
         res.json(result.rows[0]);
     } catch (error) {
@@ -232,7 +234,7 @@ app.get('/api/get-noticia/:id', async (req, res) => {
     }
 });
 
-// Existing endpoint for general query execution (if still needed)
+// Query endpoint
 app.post('/api/query', async (req, res) => {
     const { query } = req.body;
 
@@ -242,7 +244,6 @@ app.post('/api/query', async (req, res) => {
     }
 
     try {
-        // Execute query safely
         const result = await pool.query(query);
         res.json(result.rows);
     } catch (error) {
@@ -251,13 +252,38 @@ app.post('/api/query', async (req, res) => {
     }
 });
 
-// Error handling middleware
+// Global error handling middleware
 app.use((err, req, res, next) => {
     console.error('Unhandled error:', err);
     res.status(500).json({ error: 'Internal server error.' });
 });
 
 // Start the server
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`Middleware API running at http://localhost:${port}`);
+});
+
+// Close slow connections and prevent too many concurrent connections
+server.headersTimeout = 11000; // Force close after 11s (1s after timeout middleware)
+server.requestTimeout = 10000; // Close connections that take too long to send data
+
+// Limit active connections per IP
+const net = require('net');
+const activeConnections = new Map();
+
+server.on('connection', (socket) => {
+    const ip = socket.remoteAddress;
+    activeConnections.set(ip, (activeConnections.get(ip) || 0) + 1);
+
+    // Limit each IP to 10 concurrent connections
+    if (activeConnections.get(ip) > 10) {
+        socket.destroy();
+    }
+
+    socket.on('close', () => {
+        activeConnections.set(ip, activeConnections.get(ip) - 1);
+        if (activeConnections.get(ip) === 0) {
+            activeConnections.delete(ip);
+        }
+    });
 });
