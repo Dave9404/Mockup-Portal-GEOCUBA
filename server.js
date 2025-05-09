@@ -25,8 +25,54 @@ const pool = new Pool({
 app.disable('x-powered-by'); 
 app.use(cors()); // Allow CORS requests
 
+// Add security headers
+app.use((req, res, next) => {
+    // Add X-Frame-Options to prevent clickjacking
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    // Add Content-Security-Policy header with Google Fonts and Maps allowed
+    res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://*.google.com https://www.google.com");
+    next();
+});
+
+// Whitelist-based security middleware
+app.use((req, res, next) => {
+    const path = req.path;
+    
+    // Define whitelist patterns
+    const allowedPatterns = [
+        // HTML pages
+        /^\/$/, // Root path
+        /^\/index\.html$/,
+        /^\/noticias\.html$/,
+        /^\/eventos\.html$/,
+        /^\/servicios\.html$/,
+        /^\/empresas\.html$/,
+        
+        // API endpoints
+        /^\/api\/.+$/,
+        
+        // Allowed asset directories
+        /^\/assets\/.+\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        /^\/js\/.+\.js$/,
+        /^\/css\/.+\.css$/,
+        
+        // Favicon
+        /^\/favicon\.ico$/
+    ];
+    
+    // Check if the request path matches any allowed pattern
+    const isAllowed = allowedPatterns.some(pattern => pattern.test(path));
+    
+    if (isAllowed) {
+        next(); // Allow the request
+    } else {
+        // Block access to any path not explicitly allowed
+        return res.status(403).send('Access Forbidden');
+    }
+});
+
 // Configure toobusy for server load monitoring
-toobusy.maxLag(50); // Set maximum lag to 50ms (increased from 10ms to be less aggressive)
+toobusy.maxLag(100); // Set maximum lag to 100ms (increased from 50ms to be less aggressive)
 app.use((req, res, next) => {
     if (toobusy()) {
         res.status(503).json({ error: 'Server is too busy. Please try again later.' });
@@ -42,14 +88,14 @@ app.use(express.urlencoded({ extended: true, limit: '1kb' }));
 // Rate limiting for ALL routes (prevents DDoS)
 const limiter = rateLimit({
     windowMs: 1 * 60 * 1000, // 1 minute
-    max: 200, // Limit each IP to 200 requests per minute (increased from 100)
+    max: 500, // Limit each IP to 500 requests per minute (increased from 200)
     standardHeaders: true,
     message: 'Too many requests from this IP, please try again later.'
 });
 app.use('/api/', limiter); // Apply rate limiting to API routes
 
 // Timeout middleware to prevent slow DoS attacks
-app.use(timeout('5s')); // 5 second timeout (increased from 2s)
+app.use(timeout('10s')); // 10 second timeout (increased from 5s)
 app.use((req, res, next) => {
     if (!req.timedout) next();
     else res.status(408).json({ error: 'Request timed out. Please try again.' });
@@ -334,14 +380,14 @@ const server = app.listen(PORT, '0.0.0.0', () => {
 
 // ================= CONNECTION MANAGEMENT =================
 // Close slow connections and prevent too many concurrent connections
-server.headersTimeout = 6000; // Force close after 6s (increased from 3s)
-server.requestTimeout = 5000; // Close connections that take too long to send data (increased from 2s)
+server.headersTimeout = 15000; // Force close after 15s (increased from 6s)
+server.requestTimeout = 10000; // Close connections that take too long to send data (increased from 5s)
 
 // Limit active connections per IP
 const activeConnections = new Map();
 const requestQueue = new Map();
-const MAX_CONNECTIONS_PER_IP = 20; // Increased from 10
-const MAX_QUEUE_SIZE = 200; // Increased from 100
+const MAX_CONNECTIONS_PER_IP = 50; // Increased from 20
+const MAX_QUEUE_SIZE = 400; // Increased from 200
 
 server.on('connection', (socket) => {
     const ip = socket.remoteAddress || '0.0.0.0';
