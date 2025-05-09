@@ -6,31 +6,50 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="generator" content="Mobirise v5.9.11, mobirise.com">
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image:src" content="assets/images/Inicio-meta.png">
-  <meta property="og:image" content="assets/images/Inicio-meta.png">
+  <meta name="twitter:image:src" content="/assets/images/Inicio-meta.png">
+  <meta property="og:image" content="/assets/images/Inicio-meta.png">
   <meta name="twitter:title" content="Portal Web GEOCUBA">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-  <link rel="shortcut icon" href="assets/images/icon2x-354x158.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/assets/images/icon2x-354x158.png" type="image/x-icon">
   <meta name="description" content="">
   
   
   <title>Portal Web GEOCUBA</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
+  
+  <!-- API Functions - Plain HTTP URLs without templates -->
+  <script>
+    // Define API URL helper functions that work with the current page's host
+    window.getApiUrl = function(endpoint) {
+      // Use the current page's hostname and port
+      const currentHost = window.location.hostname;
+      const currentPort = window.location.port || '8060';
+      return "http://" + currentHost + ":" + currentPort + "/api/" + endpoint;
+    };
+    
+    window.getRelativeApiUrl = function(endpoint) {
+      return "/api/" + endpoint;
+    };
+  </script>
+  
+  <!-- Use relative paths for all resources -->
+  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="/assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="/assets/animatecss/animate.css">
+  <link rel="stylesheet" href="/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="/assets/theme/css/style.css">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="preload" as="style" href="/assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
 
-  
+  <!-- API Configuration -->
+  <script src="/js/config.js"></script>
   
   
 </head>
@@ -42,7 +61,7 @@
 				<div class="navbar-brand">
 					<span class="navbar-logo">
 						<a href="index.html">
-							<img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+							<img src="/assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
 						</a>
 					</span>
 				</div>
@@ -100,7 +119,7 @@
         async function loadDropdownData() {
             try {
                 // Load services
-                const servicesResponse = await fetch('http://localhost:3000/api/get-services');
+                const servicesResponse = await fetch(getApiUrl('get-services'));
                 const services = await servicesResponse.json();
                 const servicesDropdown = document.getElementById('services-dropdown');
                 const servicesFragment = document.createDocumentFragment();
@@ -114,7 +133,7 @@
                 servicesDropdown.appendChild(servicesFragment);
 
                 // Load empresas
-                const empresasResponse = await fetch('http://localhost:3000/api/get-empresas');
+                const empresasResponse = await fetch(getApiUrl('get-empresas'));
                 const empresas = await empresasResponse.json();
                 const empresasDropdown = document.getElementById('empresas-dropdown');
                 const empresasFragment = document.createDocumentFragment();
@@ -150,7 +169,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-12 col-md-12 col-lg-7 image-wrapper">
-					<img id="main-image" class="w-100" src="assets/images/herophoto-1-1476x1155.png" alt="Obrero operando equipo">
+					<img id="main-image" class="w-100" src="/assets/images/herophoto-1-1476x1155.png" alt="Obrero operando equipo">
 				</div>
 				<div class="col-12 col-lg col-md-12">
 					<div class="text-wrapper align-left">
@@ -180,7 +199,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-12 col-lg-4 image-wrapper">
-				<img class="w-100" src="assets/images/logo-30-aniversario-597x618.png" alt="Mobirise Website Builder">
+				<img class="w-100" src="/assets/images/logo-30-aniversario-597x618.png" alt="Mobirise Website Builder">
 			</div>
 			<div class="col-12 col-md-12 col-lg">
 				<div class="text-wrapper align-left">
@@ -286,7 +305,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/depositphotos-46686217-stock-photo-modern-printing-house-1023x682.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="0" data-bs-slide-to="0">
+									<img src="/assets/images/depositphotos-46686217-stock-photo-modern-printing-house-1023x682.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="0" data-bs-slide-to="0">
 								</div>
 							</div>
 							<div class="item-content">
@@ -304,7 +323,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/pexels-andrew-2859169-2000x1333.jpg" alt="Mobirise Website Builder" title="" data-slide-to="1" data-bs-slide-to="1">
+									<img src="/assets/images/pexels-andrew-2859169-2000x1333.jpg" alt="Mobirise Website Builder" title="" data-slide-to="1" data-bs-slide-to="1">
 								</div>
 							</div>
 							<div class="item-content">
@@ -322,7 +341,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/vc-01.1-640x480.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="2" data-bs-slide-to="2">
+									<img src="/assets/images/vc-01.1-640x480.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="2" data-bs-slide-to="2">
 								</div>
 							</div>
 							<div class="item-content">
@@ -340,7 +359,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/radar-sebapuls-20-800x1122.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="3" data-bs-slide-to="3">
+									<img src="/assets/images/radar-sebapuls-20-800x1122.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="3" data-bs-slide-to="3">
 								</div>
 							</div>
 							<div class="item-content">
@@ -358,7 +377,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/imagen-modelo-647x558.png" alt="Mobirise Website Builder" title="" data-slide-to="4" data-bs-slide-to="4">
+									<img src="/assets/images/imagen-modelo-647x558.png" alt="Mobirise Website Builder" title="" data-slide-to="4" data-bs-slide-to="4">
 								</div>
 							</div>
 							<div class="item-content">
@@ -376,7 +395,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/dsc04312-1200x900.jpg" alt="Mobirise Website Builder" title="" data-slide-to="5" data-bs-slide-to="5">
+									<img src="/assets/images/dsc04312-1200x900.jpg" alt="Mobirise Website Builder" title="" data-slide-to="5" data-bs-slide-to="5">
 								</div>
 							</div>
 							<div class="item-content">
@@ -394,7 +413,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/multicoptero-600x450.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="6" data-bs-slide-to="6">
+									<img src="/assets/images/multicoptero-600x450.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="6" data-bs-slide-to="6">
 								</div>
 							</div>
 							<div class="item-content">
@@ -411,7 +430,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/dsc-2951-600x399.jpg" alt="Mobirise Website Builder" title="" data-slide-to="7" data-bs-slide-to="7">
+									<img src="/assets/images/dsc-2951-600x399.jpg" alt="Mobirise Website Builder" title="" data-slide-to="7" data-bs-slide-to="7">
 								</div>
 							</div>
 							<div class="item-content">
@@ -428,7 +447,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/pexels-themightynelson-5802827-1200x800.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="8" data-bs-slide-to="8">
+									<img src="/assets/images/pexels-themightynelson-5802827-1200x800.jpeg" alt="Mobirise Website Builder" title="" data-slide-to="8" data-bs-slide-to="8">
 								</div>
 							</div>
 							<div class="item-content">
@@ -445,7 +464,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/dsc00253-1200x716.jpg" alt="Mobirise Website Builder" title="" data-slide-to="9" data-bs-slide-to="9">
+									<img src="/assets/images/dsc00253-1200x716.jpg" alt="Mobirise Website Builder" title="" data-slide-to="9" data-bs-slide-to="9">
 								</div>
 							</div>
 							<div class="item-content">
@@ -462,7 +481,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/img-3423-1200x900.jpg" alt="Mobirise Website Builder" title="" data-slide-to="10" data-bs-slide-to="10">
+									<img src="/assets/images/img-3423-1200x900.jpg" alt="Mobirise Website Builder" title="" data-slide-to="10" data-bs-slide-to="10">
 								</div>
 							</div>
 							<div class="item-content">
@@ -478,7 +497,7 @@
 						<div class="slide-content">
 							<div class="item-img">
 								<div class="item-wrapper">
-									<img src="assets/images/dsc-3013-1200x797.jpg" alt="Mobirise Website Builder" title="" data-slide-to="11" data-bs-slide-to="11">
+									<img src="/assets/images/dsc-3013-1200x797.jpg" alt="Mobirise Website Builder" title="" data-slide-to="11" data-bs-slide-to="11">
 								</div>
 							</div>
 							<div class="item-content">
@@ -534,7 +553,7 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-12 col-md-12 col-lg-6 image-wrapper">
-				<img class="w-100" src="assets/images/dsc-3023-816x542.jpeg" alt="Mobirise Website Builder">
+				<img class="w-100" src="/assets/images/dsc-3023-816x542.jpeg" alt="Mobirise Website Builder">
 			</div>
 			<div class="col-12 col-md-12 col-lg">
 				<div class="text-wrapper align-left">
@@ -597,16 +616,16 @@
         </div>
         <div class="row justify-content-center mt-4">
             <div class="col-md-3 card">
-                <a href="https://www.granma.cu/" target="_blank"><img src="assets/images/granma-logo-240x72.png" alt="Sitio Oficial Granma"></a>
+                <a href="https://www.granma.cu/" target="_blank"><img src="/assets/images/granma-logo-240x72.png" alt="Sitio Oficial Granma"></a>
             </div>
             <div class="col-md-3 card">
-                <a href="https://juventudrebelde.cu/" target="_blank"><img src="assets/images/juventud-rebelde-200x95.png" alt="Sitio Oficial Juventud Rebelde"></a>
+                <a href="https://juventudrebelde.cu/" target="_blank"><img src="/assets/images/juventud-rebelde-200x95.png" alt="Sitio Oficial Juventud Rebelde"></a>
             </div>
             <div class="col-md-3 card">
-                <a href="http://cubadebate.cu" target="_blank"><img src="assets/images/cubadebate-logo-240x56.png" alt="Sitio Oficial Cubadebate"></a>
+                <a href="http://cubadebate.cu" target="_blank"><img src="/assets/images/cubadebate-logo-240x56.png" alt="Sitio Oficial Cubadebate"></a>
             </div>
             <div class="col-md-3 card">
-                <a href="https://cubaminrex.cu"><img src="assets/images/minrex4x-240x78.png" alt="Sitio Oficial MINREX"></a>
+                <a href="https://cubaminrex.cu"><img src="/assets/images/minrex4x-240x78.png" alt="Sitio Oficial MINREX"></a>
             </div>
             
             
@@ -630,14 +649,14 @@
             </div>
         </div>
     </div>
-</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/117942" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/builder/ai-website-creator.html">AI Website Creator</a></section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/parallax/jarallax.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/mbr-tabs/mbr-tabs.js"></script>  <script src="assets/embla/embla.min.js"></script>  <script src="assets/embla/script.js"></script>  <script src="assets/theme/js/script.js"></script>  
+</section><section class="display-7" style="padding: 0;align-items: center;justify-content: center;flex-wrap: wrap;    align-content: center;display: flex;position: relative;height: 4rem;"><a href="https://mobiri.se/117942" style="flex: 1 1;height: 4rem;position: absolute;width: 100%;z-index: 1;"><img alt="" style="height: 4rem;" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="></a><p style="margin: 0;text-align: center;" class="display-7">&#8204;</p><a style="z-index:1" href="https://mobirise.com/builder/ai-website-creator.html">AI Website Creator</a></section><script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="/assets/parallax/jarallax.js"></script>  <script src="/assets/smoothscroll/smooth-scroll.js"></script>  <script src="/assets/ytplayer/index.js"></script>  <script src="/assets/dropdown/js/navbar-dropdown.js"></script>  <script src="/assets/mbr-tabs/mbr-tabs.js"></script>  <script src="/assets/embla/embla.min.js"></script>  <script src="/assets/embla/script.js"></script>  <script src="/assets/theme/js/script.js"></script>
   
   
   <input name="animation" type="hidden">
   <script>
 		async function loadPresentationData() {
     try {
-        const response = await fetch('http://localhost:3000/api/get-presentacion');
+        const response = await fetch(getApiUrl('get-presentacion'));
         if (!response.ok) throw new Error('Failed to fetch presentation data');
 
         const data = await response.json();
@@ -701,7 +720,7 @@ function updateTabContent() {
 
 async function loadNoticias() {
     try {
-        const response = await fetch('http://localhost:3000/api/get-noticias-destacadas');
+        const response = await fetch(getApiUrl('get-noticias-destacadas'));
         if (!response.ok) throw new Error('Failed to fetch noticias');
 
         const noticias = await response.json();
@@ -793,7 +812,7 @@ async function loadNoticias() {
 
 async function loadPreguntasFrecuentes() {
     try {
-        const response = await fetch('http://localhost:3000/api/get-preguntas-frecuentes');
+        const response = await fetch(getApiUrl('get-preguntas-frecuentes'));
         if (!response.ok) throw new Error('Failed to fetch preguntas frecuentes');
 
         const preguntas = await response.json();

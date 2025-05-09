@@ -5,16 +5,20 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
-    "helmet": "^8.0.0",
-    "pg": "^8.13.1"
+    "fs": "^0.0.1-security",
+    "helmet": "^8.1.0",
+    "https": "^1.0.0",
+    "pg": "^8.13.1",
+    "request-ip": "^3.3.0",
+    "toobusy-js": "^0.5.1"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
     "live-server": "^1.2.2"
   },
   "scripts": {
-    "start:api": "node middleware.js",
-    "start:html": "live-server --port=8080 --host=localhost --open=index.html",
-    "start": "concurrently \"npm run start:api\" \"npm run start:html\""
+    "start:https":"node server-https.js",
+    "start": "node server.js",
+    "start:production": "set NODE_ENV=production&& node server.js"
   }
 }

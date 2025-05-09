@@ -5,28 +5,47 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:image:src" content="assets/images/artesgraficasgeocuba-meta.png">
-  <meta property="og:image" content="assets/images/artesgraficasgeocuba-meta.png">
+  <meta name="twitter:image:src" content="/assets/images/artesgraficasgeocuba-meta.png">
+  <meta property="og:image" content="/assets/images/artesgraficasgeocuba-meta.png">
   <meta name="twitter:title" content="GEOCUBA Artes Gráficas">
-  <link rel="shortcut icon" href="assets/images/icon2x-354x158.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/assets/images/icon2x-354x158.png" type="image/x-icon">
   <meta name="description" content="Productos y Servicios Pertenecientes a la Esfera de las Artes Gráficas brindados por las empresas pertenecientes al Grupo Empresarial GEOCUBA">
   
   <title>GEOCUBA Artes Gráficas</title>
-  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
-  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
-  <link rel="stylesheet" href="assets/parallax/jarallax.css">
-  <link rel="stylesheet" href="assets/animatecss/animate.css">
-  <link rel="stylesheet" href="assets/dropdown/css/style.css">
-  <link rel="stylesheet" href="assets/socicon/css/styles.css">
-  <link rel="stylesheet" href="assets/theme/css/style.css">
+  
+  <!-- API Functions - Plain HTTP URLs without templates -->
+  <script>
+    // Define API URL helper functions that work with the current page's host
+    window.getApiUrl = function(endpoint) {
+      // Use the current page's hostname and port
+      const currentHost = window.location.hostname;
+      const currentPort = window.location.port || '8060';
+      return "http://" + currentHost + ":" + currentPort + "/api/" + endpoint;
+    };
+    
+    window.getRelativeApiUrl = function(endpoint) {
+      return "/api/" + endpoint;
+    };
+  </script>
+  
+  <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="/assets/parallax/jarallax.css">
+  <link rel="stylesheet" href="/assets/animatecss/animate.css">
+  <link rel="stylesheet" href="/assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="/assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="/assets/theme/css/style.css">
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
-  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
-  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <link rel="preload" as="style" href="/assets/mobirise/css/mbr-additional.css">
+  <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <!-- API Configuration -->
+  <script src="/js/config.js"></script>
 </head>
 <body>
   
@@ -36,7 +55,7 @@
         <div class="navbar-brand">
           <span class="navbar-logo">
             <a href="index.html">
-              <img src="assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
+              <img src="/assets/images/icon2x-354x158.png" alt="Portal Web OSDE GEOCUBA" style="height: 3.7rem;">
             </a>
           </span>
         </div>
@@ -88,7 +107,7 @@
   <script>
     async function loadServices() {
       try {
-        const response = await fetch('http://localhost:3000/api/get-services');
+        const response = await fetch(getApiUrl('get-services'));
         if (!response.ok) {
           throw new Error('Failed to fetch services');
         }
@@ -110,7 +129,7 @@
     loadServices();
     async function loadEmpresas() {
       try {
-        const response = await fetch('http://localhost:3000/api/get-empresas');
+        const response = await fetch(getApiUrl('get-empresas'));
         if (!response.ok) {
           throw new Error('Failed to fetch empresas');
         }
@@ -205,21 +224,21 @@
         <div class="item features-without-image col-12 col-lg-4">
           <div class="item-wrapper">
             <div class="img-wrapper">
-              <img src="assets/images/ciego-montero-201x201.png" alt="Cliente GEOCUBA">
+              <img src="/assets/images/ciego-montero-201x201.png" alt="Cliente GEOCUBA">
             </div>
           </div>
         </div>
         <div class="item features-without-image col-12 col-lg-4">
           <div class="item-wrapper">
             <div class="img-wrapper">
-              <img src="assets/images/havana-club-201x201.png" alt="Cliente GEOCUBA">
+              <img src="/assets/images/havana-club-201x201.png" alt="Cliente GEOCUBA">
             </div>
           </div>
         </div>
         <div class="item features-without-image col-12 col-lg-4">
           <div class="item-wrapper">
             <div class="img-wrapper">
-              <img src="assets/images/minsap-201x201.png" alt="Cliente GEOCUBA">
+              <img src="/assets/images/minsap-201x201.png" alt="Cliente GEOCUBA">
             </div>
           </div>
         </div>
@@ -237,13 +256,13 @@
     </div>
   </section>
 
-  <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/parallax/jarallax.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/ytplayer/index.js"></script>
-  <script src="assets/dropdown/js/navbar-dropdown.js"></script>
-  <script src="assets/scrollgallery/scroll-gallery.js"></script>
-  <script src="assets/theme/js/script.js"></script>
+  <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/parallax/jarallax.js"></script>
+  <script src="/assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="/assets/ytplayer/index.js"></script>
+  <script src="/assets/dropdown/js/navbar-dropdown.js"></script>
+  <script src="/assets/scrollgallery/scroll-gallery.js"></script>
+  <script src="/assets/theme/js/script.js"></script>
 
   <input name="animation" type="hidden">
   <script>
@@ -262,7 +281,7 @@
           contactButton.style.display = 'none';
         }
 
-        const response = await fetch(`http://localhost:3000/api/get-service/${encodeURIComponent(serviceName)}`);
+        const response = await fetch(getApiUrl(`get-service/${encodeURIComponent(serviceName)}`));
         if (!response.ok) throw new Error('Failed to fetch service details');
 
         const serviceData = await response.json();
@@ -275,8 +294,35 @@
           if (typeof serviceData.service.img === 'string') {
             imagen1Div.style.backgroundImage = `url(${serviceData.service.img})`;
           } else if (serviceData.service.img.data) {
-            const base64Image = btoa(String.fromCharCode(...new Uint8Array(serviceData.service.img.data)));
-            imagen1Div.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
+            try {
+              // Safely handle binary data with a size limit
+              const imageData = serviceData.service.img.data;
+              // Check if data needs to be processed as array or is already in a usable format
+              let base64Image;
+              if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
+                // Limit the size to prevent stack overflow
+                if (imageData.length > 1000000) { // ~1MB limit
+                  console.warn('Image too large, using placeholder');
+                  imagen1Div.style.backgroundImage = 'url(/assets/images/placeholder.jpg)';
+                } else {
+                  base64Image = btoa(
+                    Array.from(new Uint8Array(imageData))
+                      .map(byte => String.fromCharCode(byte))
+                      .join('')
+                  );
+                  imagen1Div.style.backgroundImage = `url(data:image/jpeg;base64,${base64Image})`;
+                }
+              } else if (typeof imageData === 'string') {
+                // Already a string, might be base64 or URL
+                imagen1Div.style.backgroundImage = `url(${imageData})`;
+              } else {
+                console.warn('Unknown image format, using placeholder');
+                imagen1Div.style.backgroundImage = 'url(/assets/images/placeholder.jpg)';
+              }
+            } catch (imageError) {
+              console.error('Error processing image:', imageError);
+              imagen1Div.style.backgroundImage = 'url(/assets/images/placeholder.jpg)';
+            }
           }
           imagen1Div.style.display = 'block';
         }
@@ -292,32 +338,32 @@
             {
               titulo: "Formas Comerciales",
               descripcion: "Impresos Comerciales y Operacionales",
-              img: "assets/images/imprenta-2-700x450.jpeg"
+              img: "/assets/images/imprenta-2-700x450.jpeg"
             },
             {
               titulo: "Etiquetas Autoadhesivas",
               descripcion: "Etiquetas Autoadhesivas en rollo o en pliego",
-              img: "assets/images/large-offset-printing-press-magazine-running-long-roll-off-paper-production-line-industrial-printer-machine-640w-1.webp"
+              img: "/assets/images/large-offset-printing-press-magazine-running-long-roll-off-paper-production-line-industrial-printer-machine-640w-1.webp"
             },
             {
               titulo: "Etiquetas no Autoadhesivas",
               descripcion: "Etiquetas de BOPP en rollos",
-              img: "assets/images/a-86-600x400.jpeg"
+              img: "/assets/images/a-86-600x400.jpeg"
             },
             {
               titulo: "Marquillas, envolturas y sellos",
               descripcion: "Envoltura para tabacos",
-              img: "assets/images/imagen8-245x326.png"
+              img: "/assets/images/imagen8-245x326.png"
             },
             {
               titulo: "Maquetas e impresión 3D",
               descripcion: "Maquetas arquitectónicas",
-              img: "assets/images/maqueta-192x163.png"
+              img: "/assets/images/maqueta-192x163.png"
             },
             {
               titulo: "Envases Flexibles",
               descripcion: "Bolsas selladas a tres caras",
-              img: "assets/images/imagen4-341x455.png"
+              img: "/assets/images/imagen4-341x455.png"
             }
           ];
           serviceData.productLines = defaultProductLines;
@@ -338,8 +384,35 @@
             if (typeof line.img === 'string') {
               img.src = line.img;
             } else if (line.img.data) {
-              const base64Image = btoa(String.fromCharCode(...new Uint8Array(line.img.data)));
-              img.src = `data:image/jpeg;base64,${base64Image}`;
+              try {
+                // Safely handle binary data with a size limit
+                const imageData = line.img.data;
+                // Check if data needs to be processed as array or is already in a usable format
+                let base64Image;
+                if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
+                  // Limit the size to prevent stack overflow
+                  if (imageData.length > 1000000) { // ~1MB limit
+                    console.warn('Image too large, using placeholder');
+                    img.src = '/assets/images/placeholder.jpg';
+                  } else {
+                    base64Image = btoa(
+                      Array.from(new Uint8Array(imageData))
+                        .map(byte => String.fromCharCode(byte))
+                        .join('')
+                    );
+                    img.src = `data:image/jpeg;base64,${base64Image}`;
+                  }
+                } else if (typeof imageData === 'string') {
+                  // Already a string, might be base64 or URL
+                  img.src = imageData;
+                } else {
+                  console.warn('Unknown image format, using placeholder');
+                  img.src = '/assets/images/placeholder.jpg';
+                }
+              } catch (imageError) {
+                console.error('Error processing image:', imageError);
+                img.src = '/assets/images/placeholder.jpg';
+              }
             }
             img.alt = line.titulo;
             imgWrapper.appendChild(img);
