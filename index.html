@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal GEOCUBA">
+  <meta name="description" content="GEOCUBA: Soluciones integradas al medio geográfico. Especialistas en cartografía náutica, gestión territorial, estudios medioambientales, geodesia, teledetección, servicios B2B geoespaciales, drones, medio ambiente, agricultura de precisión, VANTs y artes gráficas.">
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image:src" content="/assets/images/Inicio-meta.png">
   <meta property="og:image" content="/assets/images/Inicio-meta.png">
@@ -76,7 +76,7 @@
 						<li class="nav-item"><a class="nav-link link text-black text-primary" href="index.html"><strong>Inicio</strong></a></li>
 						<li class="nav-item dropdown">
 							<a class="nav-link link text-black text-primary dropdown-toggle" href="#" data-bs-toggle="dropdown">
-								<strong>Servicios</strong>
+								<strong>Bienes y Servicios</strong>
 							</a>
 							<div id="services-dropdown" class="dropdown-menu"></div>
 						</li>
@@ -94,10 +94,10 @@
 						</li>
 					</ul>
 					<div class="icons-menu">
-						<a class="iconfont-wrapper" href="tel:+53 555555555">
+						<a class="iconfont-wrapper" href="tel:+5359955686" title="Comunicación">
 							<span class="p-2 mbr-iconfont mobi-mbri-phone mobi-mbri"></span>
 						</a>
-						<a class="iconfont-wrapper" href="https://wa.me/53 555555555">
+						<a class="iconfont-wrapper" href="https://wa.me/5359955686" title="WhatsApp Comunicación">
 							<span class="p-2 mbr-iconfont socicon-whatsapp socicon"></span>
 						</a>
 						<a class="iconfont-wrapper" href="mailto:atencionpoblacion@geocuba.cu">
@@ -287,7 +287,7 @@
 			<div class="row justify-content-center">
 				<div class="col-12 content-head">
 					<div class="mbr-section-head mb-5">
-						<h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>&nbsp;Productos y Servicios</strong></h4>
+						<h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>&nbsp;Bienes y Servicios</strong></h4>
 						<h5 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">Ofrecemos una amplia gama de productos y servicios diseñados para satisfacer las necesidades de investigación, exploración y gestión ambiental en diversos sectores.</h5>
 					</div>
 				</div>
@@ -539,8 +539,6 @@
         <div id="news-list" class="row"></div>
     </div>
 </section>
-
-<section data-bs-version="5.1" class="start article4 cid-umRPe7IMAi mbr-parallax-background" id="article04-2c">
 	
 
 	
@@ -587,10 +585,12 @@
                     <div class="text-wrapper">
                         
                         <ul class="list mbr-fonts-style display-7">
-                            <li class="mbr-text item-wrap"><strong>Teléfono:</strong> <a href="tel:+5372095995" class="text-white">+53 7</a><em><a href="tel:+5372095995" class="text-white">2095995</a></em></li>
-                            <li class="mbr-text item-wrap"><strong>Email:</strong> <a href="mailto:negocios@geocuba.cu" class="text-white">negocios@geocuba.cu</a></li>
+                            <li class="mbr-text item-wrap"><strong>Teléfono:</strong> <a href="tel:+5372095995" class="text-white">+53 72095995</a></li>
+                            <li class="mbr-text item-wrap"><strong>Email:</strong> <a href="mailto:negocios@geocuba.cu" class="text-white">negocios@geocuba.cu</a>, <a href="mailto:opcidg@geocuba.cu" class="text-white">opcidg@geocuba.cu</a></li>
                             <li class="mbr-text item-wrap"><strong>Dirección:</strong> OSDE Grupo Empresarial GEOCUBA</li>
-                            <li class="mbr-text item-wrap">Ave. 84 Esq. 19, 4to Piso, Playa</li><li class="mbr-text item-wrap"><strong>Horario de Atención:</strong> Lunes a Jueves 8:00am - 5:00pm</li>
+                            <li class="mbr-text item-wrap">Ave. 84 Esq. 19, 4to Piso, Playa</li>
+                            <li class="mbr-text item-wrap"><strong>Horario de Atención:</strong> Lunes a Jueves: 8:00AM-5:00PM, Viernes: 8:00AM-4:00PM</li>
+                            <li class="mbr-text item-wrap"><strong>Comunicación:</strong> <a href="tel:+5359955686" class="text-white">+53 59955686</a>, <a href="https://wa.me/5359955686" class="text-white">WhatsApp</a></li>
                         </ul>
                     </div>
                 </div>
@@ -709,7 +709,15 @@ function updateTabContent() {
     Object.entries(tabContent).forEach(([elementId, content]) => {
         const element = document.getElementById(elementId);
         if (element) {
-            element.textContent = content || 'Contenido no disponible';
+            // Special handling for quienes somos tab to add CTA link
+            if (elementId === 'tabqsomos') {
+                // Append CTA link to Bienes y Servicios
+                let contentText = content || 'Contenido no disponible';
+                contentText = contentText.replace(/Explora nuestros servicios\.?$/, ''); // Remove existing CTA if present
+                element.innerHTML = contentText + ' <a href="servicios.html" class="text-primary"><strong>Explora nuestros Bienes y Servicios</strong></a>';
+            } else {
+                element.textContent = content || 'Contenido no disponible';
+            }
         } else {
             console.warn(`Element with id ${elementId} not found`);
         }

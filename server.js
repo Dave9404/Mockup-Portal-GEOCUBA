@@ -52,7 +52,7 @@ app.use((req, res, next) => {
         /^\/api\/.+$/,
         
         // Allowed asset directories
-        /^\/assets\/.+\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        /^\/assets\/.+\.(css|js|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot|ico|webp)$/,
         /^\/js\/.+\.js$/,
         /^\/css\/.+\.css$/,
         
