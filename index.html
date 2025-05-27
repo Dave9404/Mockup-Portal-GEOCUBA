@@ -539,6 +539,8 @@
         <div id="news-list" class="row"></div>
     </div>
 </section>
+
+<section data-bs-version="5.1" class="start article4 cid-umRPe7IMAi mbr-parallax-background" id="article04-2c">
 	
 
 	
@@ -646,7 +648,6 @@
         </div>
     </div>
 </section>
-
 <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="/assets/parallax/jarallax.js"></script>  <script src="/assets/smoothscroll/smooth-scroll.js"></script>  <script src="/assets/ytplayer/index.js"></script>  <script src="/assets/dropdown/js/navbar-dropdown.js"></script>  <script src="/assets/mbr-tabs/mbr-tabs.js"></script>  <script src="/assets/embla/embla.min.js"></script>  <script src="/assets/embla/script.js"></script>  <script src="/assets/theme/js/script.js"></script>
   
   
@@ -716,7 +717,7 @@ function updateTabContent() {
                 contentText = contentText.replace(/Explora nuestros servicios\.?$/, ''); // Remove existing CTA if present
                 element.innerHTML = contentText + ' <a href="servicios.html" class="text-primary"><strong>Explora nuestros Bienes y Servicios</strong></a>';
             } else {
-                element.textContent = content || 'Contenido no disponible';
+            element.textContent = content || 'Contenido no disponible';
             }
         } else {
             console.warn(`Element with id ${elementId} not found`);
