@@ -41,12 +41,13 @@ app.use((req, res, next) => {
     // Define whitelist patterns
     const allowedPatterns = [
         // HTML pages
-        /^\/$/, // Root path
+        /^\/$/,
         /^\/index\.html$/,
         /^\/noticias\.html$/,
         /^\/eventos\.html$/,
         /^\/servicios\.html$/,
         /^\/empresas\.html$/,
+        /^\/producto\.html$/,
         
         // API endpoints
         /^\/api\/.+$/,

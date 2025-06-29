@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="/assets/images/icon2x-354x158.png" type="image/x-icon">
+    <meta name="description" content="">
+    <title>Producto - GEOCUBA</title>
+    
+    <!-- API Functions -->
+    <script>
+        // Helper function to format text content with proper paragraphs
+        function formatTextContent(text) {
+            if (!text) return '';
+            
+            // Split by double line breaks to create paragraphs
+            const paragraphs = text.split(/\n\s*\n/);
+            
+            if (paragraphs.length > 1) {
+                // Multiple paragraphs - wrap each in <p> tags
+                return paragraphs
+                    .filter(p => p.trim() !== '')
+                    .map(p => `<p>${p.trim()}</p>`)
+                    .join('');
+            } else {
+                // Single paragraph or no clear paragraph breaks
+                return text;
+            }
+        }
+        
+        // Define API URL helper functions that work with the current page's host
+        window.getApiUrl = function(endpoint) {
+            // Use the current page's hostname and port
+            const currentHost = window.location.hostname;
+            const currentPort = window.location.port || '8060';
+            return "http://" + currentHost + ":" + currentPort + "/api/" + endpoint;
+        };
+        
+        window.getRelativeApiUrl = function(endpoint) {
+            return "/api/" + endpoint;
+        };
+    </script>
+    
+    <link rel="stylesheet" href="/assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="/assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="/assets/socicon/css/styles.css">
+    <link rel="stylesheet" href="/assets/theme/css/style.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="/assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        pre {
+            white-space: pre-wrap;       /* CSS3 */
+            white-space: -moz-pre-wrap;  /* Firefox */
+            white-space: -pre-wrap;      /* Opera <7 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* IE */
+            overflow-x: hidden;          /* Hide horizontal scrollbar */
+            max-width: 100%;             /* Ensure it doesn't exceed container width */
+            text-align: justify;         /* Justify text for better readability */
+            font-family: inherit;        /* Use the same font as the rest of the content */
+            margin-bottom: 1rem;         /* Add some spacing */
+        }
+        
+        .product-detail {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background-color: #f8f9fa;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-content {
+            padding: 2rem;
+        }
+        
+        .product-title {
+            font-size: 2rem;
+            color: #0d47a1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #212529;
+            margin-bottom: 2rem;
+        }
+        
+        .related-products {
+            margin-top: 3rem;
+        }
+        
+        .related-product-card {
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            cursor: pointer;
+        }
+        
+        .related-product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .related-img-container {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            padding: 0;
+        }
+        
+        .related-img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        
+        .related-title {
+            font-size: 1.1rem;
+            line-height: 1.4;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            color: #0d47a1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <section data-bs-version="5.1" class="menu menu1 cid-umARzPo6Q0" once="menu" id="menu01-20">
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="index.html">
+                            <img src="/assets/images/icon2x-354x158.png" alt="GEOCUBA" style="height: 3rem;">
+                        </a>
+                    </span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Nosotros</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-undefined" data-bs-popper="none">
+                                <a class="text-black dropdown-item display-4" href="index.html#features023-1n">Quiénes Somos</a>
+                                <a class="text-black dropdown-item display-4" href="index.html#features023-1o">Misión</a>
+                                <a class="text-black dropdown-item display-4" href="index.html#features023-1p">Visión</a>
+                                <a class="text-black dropdown-item display-4" href="index.html#gallery02-1q">Galería</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="empresas-dropdown">
+                            <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Empresas</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-undefined" data-bs-popper="none" id="empresas-menu">
+                                <!-- Empresas will be loaded dynamically -->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown" id="servicios-dropdown">
+                            <a class="nav-link link text-black dropdown-toggle display-4" href="#" data-toggle="dropdown-submenu" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">Servicios</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-undefined" data-bs-popper="none" id="servicios-menu">
+                                <!-- Servicios will be loaded dynamically -->
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="noticias.html">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black display-4" href="eventos.html">Eventos</a>
+                        </li>
+                    </ul>
+                    <div class="navbar-buttons mbr-section-btn">
+                        <a class="btn btn-primary display-4" href="index.html#contacts02-1r">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+    <section class="header-section py-5 mt-5">
+        <div class="container mt-5">
+            <div id="product-detail" class="product-detail">
+                <!-- Product details will be loaded here -->
+                <div class="text-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <p class="mt-3">Cargando detalles del producto...</p>
+                </div>
+            </div>
+            
+            <div class="text-center mb-4">
+                <button onclick="goBack()" class="btn btn-lg btn-secondary display-7">
+                    <span class="mobi-mbri mobi-mbri-arrow-prev mbr-iconfont mbr-iconfont-btn"></span>
+                    Atrás
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="related-products-section py-5">
+        <div class="container">
+            <h2 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+                <strong>Otros Productos Relacionados</strong>
+            </h2>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="related-products-container">
+                <!-- Related products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <section data-bs-version="5.1" class="footer4 cid-umAQZRYQJw" once="footers" id="footer04-1v">
+        <div class="container">
+            <div class="media-container-row align-center mbr-white">
+                <div class="col-12">
+                    <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                        © Copyright 2023 GEOCUBA - Todos los derechos reservados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/smoothscroll/smooth-scroll.js"></script>
+    <script src="/assets/ytplayer/index.js"></script>
+    <script src="/assets/dropdown/js/navbar-dropdown.js"></script>
+    <script src="/assets/theme/js/script.js"></script>
+
+    <script>
+        // Global variables
+        let currentProductId = null;
+        let allProducts = [];
+        let serviceData = null;
+        
+        // Function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+        
+        // Function to load dropdown data
+        async function loadDropdownData() {
+            try {
+                // Load empresas for dropdown
+                const empresasResponse = await fetch(getApiUrl('get-empresas'));
+                if (!empresasResponse.ok) throw new Error('Failed to fetch empresas');
+                const empresasData = await empresasResponse.json();
+                
+                const empresasMenu = document.getElementById('empresas-menu');
+                empresasData.forEach(empresa => {
+                    const link = document.createElement('a');
+                    link.className = 'text-black dropdown-item display-4';
+                    link.href = `empresas.html?empresa=${encodeURIComponent(empresa.nombre)}`;
+                    link.textContent = empresa.nombre;
+                    empresasMenu.appendChild(link);
+                });
+                
+                // Load servicios for dropdown
+                const serviciosResponse = await fetch(getApiUrl('get-services'));
+                if (!serviciosResponse.ok) throw new Error('Failed to fetch servicios');
+                const serviciosData = await serviciosResponse.json();
+                
+                const serviciosMenu = document.getElementById('servicios-menu');
+                serviciosData.forEach(servicio => {
+                    const link = document.createElement('a');
+                    link.className = 'text-black dropdown-item display-4';
+                    link.href = `servicios.html?service=${encodeURIComponent(servicio.nombre)}`;
+                    link.textContent = servicio.nombre;
+                    serviciosMenu.appendChild(link);
+                });
+            } catch (error) {
+                console.error('Error loading dropdown data:', error);
+            }
+        }
+        
+        // Function to load product details
+        async function loadProductDetails() {
+            try {
+                // Debug URL parameters
+                console.log('Full URL:', window.location.href);
+                console.log('Search params:', window.location.search);
+                
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get('id');
+                const serviceName = urlParams.get('service');
+                
+                console.log('Parsed URL parameters - productId:', productId, 'serviceName:', serviceName);
+                
+                if (!productId || !serviceName) {
+                    console.error('No product ID or service name provided in URL');
+                    document.getElementById('product-detail').innerHTML = `
+                        <div class="alert alert-danger m-5" role="alert">
+                            Error: No se proporcionó un ID de producto o nombre de servicio válido.
+                        </div>
+                    `;
+                    return;
+                }
+                
+                currentProductId = productId;
+                
+                // Fetch service data to get all products
+                const apiUrl = getApiUrl(`get-service/${encodeURIComponent(serviceName)}`);
+                console.log('Fetching from API URL:', apiUrl);
+                
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    console.error('API response not OK:', response.status, response.statusText);
+                    throw new Error(`Failed to fetch service details: ${response.status} ${response.statusText}`);
+                }
+                
+                serviceData = await response.json();
+                console.log('Service data received:', serviceData);
+                
+                // Find the current product
+                let currentProduct = null;
+                
+                if (serviceData.productLines && Array.isArray(serviceData.productLines)) {
+                    allProducts = serviceData.productLines;
+                    // Convert IDs to strings for comparison to handle both string and number IDs
+                    currentProduct = allProducts.find(product => String(product.id) === String(productId));
+                    
+                    // Debug output
+                    console.log('Product ID to find:', productId);
+                    console.log('Available product IDs:', allProducts.map(p => p.id));
+                    console.log('Found product:', currentProduct);
+                }
+                
+                if (!currentProduct) {
+                    throw new Error('Product not found');
+                }
+                
+                displayProductDetails(currentProduct);
+                displayRelatedProducts(currentProduct.id);
+                
+                // Update page title
+                document.title = `${currentProduct.titulo || currentProduct.nombre} - GEOCUBA`;
+                
+            } catch (error) {
+                console.error('Error loading product details:', error);
+                document.getElementById('product-detail').innerHTML = `
+                    <div class="alert alert-danger m-5" role="alert">
+                        Error al cargar los detalles del producto. Por favor, intente más tarde.
+                    </div>
+                `;
+            }
+        }
+        
+        // Function to display product details
+        function displayProductDetails(product) {
+            const detailContainer = document.getElementById('product-detail');
+            
+            // Process image source
+            let imgSrc = '/assets/images/placeholder.jpg';
+            
+            if (product.img) {
+                if (typeof product.img === 'string') {
+                    imgSrc = product.img;
+                } else if (product.img.data) {
+                    try {
+                        const imageData = product.img.data;
+                        if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
+                            if (imageData.length <= 1000000) { // ~1MB limit
+                                const base64Image = btoa(
+                                    Array.from(new Uint8Array(imageData))
+                                        .map(byte => String.fromCharCode(byte))
+                                        .join('')
+                                );
+                                imgSrc = `data:image/jpeg;base64,${base64Image}`;
+                            }
+                        } else if (typeof imageData === 'string') {
+                            imgSrc = imageData;
+                        }
+                    } catch (error) {
+                        console.error('Error processing product image:', error);
+                    }
+                }
+            }
+            
+            detailContainer.innerHTML = `
+                <div class="product-image">
+                    <img src="${imgSrc}" alt="${product.titulo || product.nombre || 'Producto'}">
+                </div>
+                <div class="product-content">
+                    <h1 class="product-title">
+                        <strong>${product.titulo || product.nombre || 'Sin título'}</strong>
+                    </h1>
+                    <div class="product-description">
+                        ${formatTextContent(product.descripcion) || 'Sin descripción'}
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Function to display related products
+        function displayRelatedProducts(currentId) {
+            const container = document.getElementById('related-products-container');
+            container.innerHTML = '';
+            
+            if (!allProducts || allProducts.length <= 1) {
+                // If there are no other products, hide the section
+                document.querySelector('.related-products-section').style.display = 'none';
+                return;
+            }
+            
+            // Filter out the current product and limit to 4 related products
+            const relatedProducts = allProducts
+                .filter(product => product.id !== currentId)
+                .slice(0, 4);
+            
+            if (relatedProducts.length === 0) {
+                document.querySelector('.related-products-section').style.display = 'none';
+                return;
+            }
+            
+            const fragment = document.createDocumentFragment();
+            
+            relatedProducts.forEach(product => {
+                // Process image source
+                let imgSrc = '/assets/images/placeholder.jpg';
+                
+                if (product.img) {
+                    if (typeof product.img === 'string') {
+                        imgSrc = product.img;
+                    } else if (product.img.data) {
+                        try {
+                            const imageData = product.img.data;
+                            if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
+                                if (imageData.length <= 1000000) { // ~1MB limit
+                                    const base64Image = btoa(
+                                        Array.from(new Uint8Array(imageData))
+                                            .map(byte => String.fromCharCode(byte))
+                                            .join('')
+                                    );
+                                    imgSrc = `data:image/jpeg;base64,${base64Image}`;
+                                }
+                            } else if (typeof imageData === 'string') {
+                                imgSrc = imageData;
+                            }
+                        } catch (error) {
+                            console.error('Error processing related product image:', error);
+                        }
+                    }
+                }
+                
+                const productDiv = document.createElement('div');
+                productDiv.className = 'col mb-4';
+                productDiv.innerHTML = `
+                    <div class="related-product-card card shadow-sm" onclick="window.location.href='producto.html?id=${product.id}&service=${encodeURIComponent(serviceData.service.nombre)}'">
+                        <div class="related-img-container">
+                            <img class="related-img" src="${imgSrc}" alt="${product.titulo || product.nombre || 'Producto'}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="related-title text-center">
+                                <strong>${product.titulo || product.nombre || 'Sin título'}</strong>
+                            </h5>
+                        </div>
+                    </div>
+                `;
+                
+                fragment.appendChild(productDiv);
+            });
+            
+            container.appendChild(fragment);
+        }
+        
+        // Initialize everything when the page loads
+        window.addEventListener('load', () => {
+            loadDropdownData();
+            loadProductDetails();
+        });
+    </script>
+</body>
+</html>

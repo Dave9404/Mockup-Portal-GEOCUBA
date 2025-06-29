@@ -76,6 +76,69 @@
       font-family: inherit;        /* Use the same font as the rest of the content */
       margin-bottom: 1rem;         /* Add some spacing */
     }
+        /* Product card styling */
+    .product-card {
+      height: 100%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: white;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    .product-img-container {
+      height: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background-color: #f8f9fa;
+      padding: 0;
+      position: relative;
+    }
+    
+    .product-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+    }
+    
+    .product-title {
+      font-size: 1.2rem;
+      line-height: 1.4;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #0d47a1;
+      border-radius: 4px;
+      text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.5);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .product-description {
+      font-size: 1rem;
+      color: #212529;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
+      -webkit-box-orient: vertical;
+      min-height: 100px;
+      padding: 0.5rem 0;
+      line-height: 1.5;
+    }
   </style>
   
   <!-- API Configuration -->
@@ -218,7 +281,7 @@
           </div>
         </div>
       </div>
-      <div id="product-lines-container" class="row">
+      <div id="product-lines-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
         <!-- Product lines will be loaded dynamically -->
       </div>
     </div>
@@ -303,6 +366,70 @@
 
   <input name="animation" type="hidden">
   <script>
+    // Function to add product lines to container
+    function addProductLineToContainer(container, productLine) {
+      console.log('Adding product line:', productLine);
+      
+      // Create a new div element for the product line
+      const productLineDiv = document.createElement('div');
+      productLineDiv.className = 'col mb-4';
+      
+      // Process image source
+      let imgSrc = '/assets/images/placeholder.jpg';
+      
+      if (productLine.img) {
+        if (typeof productLine.img === 'string') {
+          imgSrc = productLine.img;
+        } else if (productLine.img.data) {
+          try {
+            const imageData = productLine.img.data;
+            if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
+              if (imageData.length <= 1000000) { // ~1MB limit
+                const base64Image = btoa(
+                  Array.from(new Uint8Array(imageData))
+                    .map(byte => String.fromCharCode(byte))
+                    .join('')
+                );
+                imgSrc = `data:image/jpeg;base64,${base64Image}`;
+              }
+            } else if (typeof imageData === 'string') {
+              imgSrc = imageData;
+            }
+          } catch (error) {
+            console.error('Error processing product line image:', error);
+          }
+        }
+      }
+      
+      // Create the HTML structure with improved styling using our new CSS classes
+      // Make the entire card clickable to navigate to the product detail page
+      const productId = productLine.id || `default-${Math.random().toString(36).substring(2, 15)}`;
+      const serviceName = new URLSearchParams(window.location.search).get('service');
+      
+      productLineDiv.innerHTML = `
+        <div class="product-card card shadow-sm" style="cursor: pointer;" onclick="window.location.href='producto.html?id=${productId}&service=${encodeURIComponent(serviceName)}'">
+          <div class="product-img-container">
+            <img class="product-img" src="${imgSrc}" alt="${productLine.titulo || productLine.nombre || 'Producto'}">
+          </div>
+          <div class="card-body p-3">
+            <div class="text-center mb-2">
+              <h5 class="product-title">
+                <strong>${productLine.titulo || productLine.nombre || 'Sin título'}</strong>
+              </h5>
+            </div>
+            <div class="mt-2">
+              <p class="product-description">
+                ${productLine.descripcion || 'Sin descripción'}
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      // Append the new product line to the container
+      container.appendChild(productLineDiv);
+    }
+    
     async function loadServiceDetails() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -313,6 +440,18 @@
           return;
         }
 
+        const response = await fetch(getApiUrl(`get-service/${encodeURIComponent(serviceName)}`));
+        if (!response.ok) throw new Error('Failed to fetch service details');
+
+        const serviceData = await response.json();
+        
+        // Debug output to check what we're getting from the API
+        console.log('Service data received:', serviceData);
+
+        document.getElementById('SevicioTitulo').innerHTML = `<strong>${serviceData.service.nombre}</strong>`;
+        document.getElementById('AGDescripcion').innerHTML = `<pre>${serviceData.service.descripcion}</pre>`;
+
+        // Handle contact button display
         const contactButton = document.querySelector('.mbr-section-btn');
         if (contactButton) {
           // Only show contact button if the service has contact information
@@ -326,14 +465,6 @@
             contactButton.style.display = 'none';
           }
         }
-
-        const response = await fetch(getApiUrl(`get-service/${encodeURIComponent(serviceName)}`));
-        if (!response.ok) throw new Error('Failed to fetch service details');
-
-        const serviceData = await response.json();
-
-        document.getElementById('SevicioTitulo').innerHTML = `<strong>${serviceData.service.nombre}</strong>`;
-        document.getElementById('AGDescripcion').innerHTML = `<pre>${serviceData.service.descripcion}</pre>`;
 
         const imagen1Div = document.getElementById('Imagen1');
         if (serviceData.service.img) {
@@ -377,32 +508,50 @@
         const productLinesContainer = document.getElementById('product-lines-container');
         productLinesContainer.innerHTML = ''; // Clear existing content
 
-        if (!serviceData.productLines || serviceData.productLines.length === 0) {
+        // Check if we have product lines from the database
+        if (serviceData.productLines && serviceData.productLines.length > 0) {
+          console.log('Displaying product lines from database:', serviceData.productLines.length);
+          
+          // Display product lines from the database
+          serviceData.productLines.forEach(productLine => {
+            // Ensure the product line has the required properties
+            if (!productLine.titulo && productLine.nombre) {
+              productLine.titulo = productLine.nombre;
+            }
+            addProductLineToContainer(productLinesContainer, productLine);
+          });
+        } else {
           console.log('No product lines found in database, showing default content');
-          // Default product lines
+          // Default product lines with IDs
           const defaultProductLines = [
             {
-              titulo: "Formas Comerciales",
-              descripcion: "Impresos Comerciales y Operacionales",
+              id: 'default-1',
+              titulo: 'Formas Comerciales',
+              descripcion: 'Impresos Comerciales y Operacionales',
               img: "/assets/images/imprenta-2-700x450.jpeg"
             },
             {
-              titulo: "Etiquetas Autoadhesivas",
-              descripcion: "Etiquetas Autoadhesivas en rollo o en pliego",
+              id: 'default-2',
+              titulo: 'Etiquetas Autoadhesivas',
+              descripcion: 'Etiquetas Autoadhesivas en rollo o en pliego',
               img: "/assets/images/large-offset-printing-press-magazine-running-long-roll-off-paper-production-line-industrial-printer-machine-640w-1.webp"
             },
             {
-              titulo: "Etiquetas no Autoadhesivas",
-              descripcion: "Etiquetas de BOPP en rollos",
+              id: 'default-3',
+              titulo: 'Etiquetas no Autoadhesivas',
+              descripcion: 'Etiquetas de BOPP en rollos',
               img: "/assets/images/a-86-600x400.jpeg"
             },
             {
-              titulo: "Marquillas, envolturas y sellos",
-              descripcion: "Envoltura para tabacos",
+              id: 'default-4',
+              titulo: 'Marquillas, envolturas y sellos',
+              descripcion: 'Envoltura para tabacos',
               img: "/assets/images/imagen8-245x326.png"
             },
             {
-              titulo: "Maquetas e impresión 3D",
+              id: 'default-5',
+              titulo: 'Maquetas e impresión 3D',
+              descripcion: 'Maquetas arquitectónicas',
               descripcion: "Maquetas arquitectónicas",
               img: "/assets/images/maqueta-192x163.png"
             },
@@ -412,76 +561,12 @@
               img: "/assets/images/imagen4-341x455.png"
             }
           ];
-          serviceData.productLines = defaultProductLines;
-        }
           
-        serviceData.productLines.forEach(line => {
-          const col = document.createElement('div');
-          col.className = 'col-12 col-lg-4 mb-4';
-            
-          const card = document.createElement('div');
-          card.className = 'card';
-            
-          const imgWrapper = document.createElement('div');
-          imgWrapper.className = 'card-img-top';
-            
-          if (line.img) {
-            const img = document.createElement('img');
-            if (typeof line.img === 'string') {
-              img.src = line.img;
-            } else if (line.img.data) {
-              try {
-                // Safely handle binary data with a size limit
-                const imageData = line.img.data;
-                // Check if data needs to be processed as array or is already in a usable format
-                let base64Image;
-                if (Array.isArray(imageData) || imageData instanceof Uint8Array) {
-                  // Limit the size to prevent stack overflow
-                  if (imageData.length > 1000000) { // ~1MB limit
-                    console.warn('Image too large, using placeholder');
-                    img.src = '/assets/images/placeholder.jpg';
-                  } else {
-                    base64Image = btoa(
-                      Array.from(new Uint8Array(imageData))
-                        .map(byte => String.fromCharCode(byte))
-                        .join('')
-                    );
-                    img.src = `data:image/jpeg;base64,${base64Image}`;
-                  }
-                } else if (typeof imageData === 'string') {
-                  // Already a string, might be base64 or URL
-                  img.src = imageData;
-                } else {
-                  console.warn('Unknown image format, using placeholder');
-                  img.src = '/assets/images/placeholder.jpg';
-                }
-              } catch (imageError) {
-                console.error('Error processing image:', imageError);
-                img.src = '/assets/images/placeholder.jpg';
-              }
-            }
-            img.alt = line.titulo;
-            imgWrapper.appendChild(img);
-          }
-
-          const cardBody = document.createElement('div');
-          cardBody.className = 'card-body';
-            
-          const title = document.createElement('h5');
-          title.className = 'card-title mbr-fonts-style display-7';
-          title.innerHTML = `<strong>${line.titulo}</strong>`;
-            
-          const desc = document.createElement('pre');
-          desc.className = 'card-text mbr-fonts-style display-7';
-          desc.textContent = line.descripcion;
-            
-          cardBody.appendChild(title);
-          cardBody.appendChild(desc);
-          card.appendChild(imgWrapper);
-          card.appendChild(cardBody);
-          col.appendChild(card);
-          productLinesContainer.appendChild(col);
-        });
+          // Add default product lines to container
+          defaultProductLines.forEach(productLine => {
+            addProductLineToContainer(productLinesContainer, productLine);
+          });
+        }
       } catch (error) {
         console.error('Error loading service details:', error);
       }
