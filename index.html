@@ -18,8 +18,43 @@
   <link rel="shortcut icon" href="/assets/images/icon2x-354x158.png" type="image/x-icon">
   <title>Portal Web GEOCUBA</title>
   
+  <!-- Custom styles for pre tags to prevent horizontal scrolling -->
+  <style>
+    pre {
+      white-space: pre-wrap;       /* CSS3 */
+      white-space: -moz-pre-wrap;  /* Firefox */
+      white-space: -pre-wrap;      /* Opera <7 */
+      white-space: -o-pre-wrap;    /* Opera 7 */
+      word-wrap: break-word;       /* IE */
+      overflow-x: hidden;          /* Hide horizontal scrollbar */
+      max-width: 100%;             /* Ensure it doesn't exceed container width */
+      text-align: justify;         /* Justify text for better readability */
+      font-family: inherit;        /* Use the same font as the rest of the content */
+      margin-bottom: 1rem;         /* Add some spacing */
+    }
+  </style>
+  
   <!-- API Functions - Plain HTTP URLs without templates -->
   <script>
+    // Helper function to format text content with proper paragraphs
+    function formatTextContent(text) {
+      if (!text) return '';
+      
+      // Split by double line breaks to create paragraphs
+      const paragraphs = text.split(/\n\s*\n/);
+      
+      if (paragraphs.length > 1) {
+        // Multiple paragraphs - wrap each in <p> tags
+        return paragraphs
+          .filter(p => p.trim() !== '')
+          .map(p => `<p>${p.trim()}</p>`)
+          .join('');
+      } else {
+        // Single paragraph or no clear paragraph breaks
+        return text;
+      }
+    }
+    
     // Define API URL helper functions that work with the current page's host
     window.getApiUrl = function(endpoint) {
       // Use the current page's hostname and port
@@ -721,9 +756,9 @@ function updateTabContent() {
                 // Append CTA link to Bienes y Servicios
                 let contentText = content || 'Contenido no disponible';
                 contentText = contentText.replace(/Explora nuestros servicios\.?$/, ''); // Remove existing CTA if present
-                element.innerHTML = contentText + ' <a href="servicios.html" class="text-primary"><strong>Explora nuestros Bienes y Servicios</strong></a>';
+                element.innerHTML = `<div class="formatted-content">${formatTextContent(contentText)}</div> <a href="servicios.html" class="text-primary"><strong>Explora nuestros Bienes y Servicios</strong></a>`;
             } else {
-            element.textContent = content || 'Contenido no disponible';
+            element.innerHTML = `<div class="formatted-content">${formatTextContent(content || 'Contenido no disponible')}</div>`;
             }
         } else {
             console.warn(`Element with id ${elementId} not found`);
@@ -777,11 +812,13 @@ async function loadNoticias() {
 
             // Handle title and description
             if (elements.title) elements.title.textContent = highlighted.titulo || '';
-            if (elements.desc) elements.desc.textContent = highlighted.noticia || '';
+            if (elements.desc) {
+                elements.desc.innerHTML = `<div class="formatted-content">${formatTextContent(highlighted.noticia || '')}</div>`;
+            }
             
             // Handle link
             if (elements.link) {
-                if (highlighted.link && typeof highlighted.link === 'string') {
+                if (highlighted.link && typeof highlighted.link === 'string' && highlighted.link.trim() !== '') {
                     elements.link.href = highlighted.link;
                     elements.link.style.display = '';
                 } else {
@@ -806,8 +843,8 @@ async function loadNoticias() {
                         ${imgSrc ? `<img class="card-img-top" src="${imgSrc}" alt="${noticia.titulo || 'Noticia'}">` : ''}
                         <div class="card-body">
                             <h5 class="card-title">${noticia.titulo || ''}</h5>
-                            <p class="card-text">${noticia.noticia || ''}</p>
-                            ${noticia.link && typeof noticia.link === 'string' 
+                            <div class="formatted-content card-text">${formatTextContent(noticia.noticia || '')}</div>
+                            ${noticia.link && typeof noticia.link === 'string' && noticia.link.trim() !== '' 
                                 ? `<a href="${noticia.link}" class="btn btn-primary">Leer más</a>` 
                                 : ''}
                         </div>
@@ -837,7 +874,7 @@ async function loadPreguntasFrecuentes() {
                 faqItem.className = 'mbr-text mbr-fonts-style display-7';
                 faqItem.innerHTML = `
                     <h5 class="faq-question"><strong>${pregunta.pregunta || ''}</strong></h5>
-                    <p class="faq-answer">${pregunta.respuesta || ''}</p>`;
+                    <div class="formatted-content faq-answer">${formatTextContent(pregunta.respuesta || '')}</div>`;
                 container.appendChild(faqItem);
             });
         }

@@ -10,6 +10,25 @@
     
     <!-- API Functions - Plain HTTP URLs without templates -->
     <script>
+        // Helper function to format text content with proper paragraphs
+        function formatTextContent(text) {
+            if (!text) return '';
+            
+            // Split by double line breaks to create paragraphs
+            const paragraphs = text.split(/\n\s*\n/);
+            
+            if (paragraphs.length > 1) {
+                // Multiple paragraphs - wrap each in <p> tags
+                return paragraphs
+                    .filter(p => p.trim() !== '')
+                    .map(p => `<p>${p.trim()}</p>`)
+                    .join('');
+            } else {
+                // Single paragraph or no clear paragraph breaks
+                return text;
+            }
+        }
+        
         // Define API URL helper functions that work with the current page's host
         window.getApiUrl = function(endpoint) {
             // Use the current page's hostname and port
@@ -87,6 +106,19 @@
 
         .smooth-scroll {
             scroll-behavior: smooth;
+        }
+        
+        pre {
+            white-space: pre-wrap;       /* CSS3 */
+            white-space: -moz-pre-wrap;  /* Firefox */
+            white-space: -pre-wrap;      /* Opera <7 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            word-wrap: break-word;       /* IE */
+            overflow-x: hidden;          /* Hide horizontal scrollbar */
+            max-width: 100%;             /* Ensure it doesn't exceed container width */
+            text-align: justify;         /* Justify text for better readability */
+            font-family: inherit;        /* Use the same font as the rest of the content */
+            margin-bottom: 1rem;         /* Add some spacing */
         }
     </style>
     <!-- API Configuration -->
@@ -304,11 +336,11 @@
                         <h3 class="mbr-section-title mbr-fonts-style mb-3 display-5">
                             <strong>${noticia.titulo}</strong>
                         </h3>
-                        <div class="mbr-text mbr-fonts-style mb-3 display-7">
-                            ${noticia.noticia}
+                        <div class="formatted-content mbr-text mbr-fonts-style mb-3 display-7">
+                            ${formatTextContent(noticia.noticia)}
                         </div>
                         <div class="news-actions">
-                            ${noticia.link ? `
+                            ${noticia.link && noticia.link.trim() !== '' ? `
                                 <a href="${noticia.link}" target="_blank" class="btn btn-lg btn-primary display-7 me-2">
                                     <span class="mobi-mbri mobi-mbri-globe-2 mbr-iconfont mbr-iconfont-btn"></span>
                                     Más Información

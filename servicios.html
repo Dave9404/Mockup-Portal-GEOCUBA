@@ -15,6 +15,25 @@
   
   <!-- API Functions - Plain HTTP URLs without templates -->
   <script>
+    // Helper function to format text content with proper paragraphs
+    function formatTextContent(text) {
+      if (!text) return '';
+      
+      // Split by double line breaks to create paragraphs
+      const paragraphs = text.split(/\n\s*\n/);
+      
+      if (paragraphs.length > 1) {
+        // Multiple paragraphs - wrap each in <p> tags
+        return paragraphs
+          .filter(p => p.trim() !== '')
+          .map(p => `<p>${p.trim()}</p>`)
+          .join('');
+      } else {
+        // Single paragraph or no clear paragraph breaks
+        return text;
+      }
+    }
+    
     // Define API URL helper functions that work with the current page's host
     window.getApiUrl = function(endpoint) {
       // Use the current page's hostname and port
@@ -43,6 +62,21 @@
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"></noscript>
   <link rel="preload" as="style" href="/assets/mobirise/css/mbr-additional.css">
   <link rel="stylesheet" href="/assets/mobirise/css/mbr-additional.css" type="text/css">
+  
+  <style>
+    pre {
+      white-space: pre-wrap;       /* CSS3 */
+      white-space: -moz-pre-wrap;  /* Firefox */
+      white-space: -pre-wrap;      /* Opera <7 */
+      white-space: -o-pre-wrap;    /* Opera 7 */
+      word-wrap: break-word;       /* IE */
+      overflow-x: hidden;          /* Hide horizontal scrollbar */
+      max-width: 100%;             /* Ensure it doesn't exceed container width */
+      text-align: justify;         /* Justify text for better readability */
+      font-family: inherit;        /* Use the same font as the rest of the content */
+      margin-bottom: 1rem;         /* Add some spacing */
+    }
+  </style>
   
   <!-- API Configuration -->
   <script src="/js/config.js"></script>
@@ -281,7 +315,16 @@
 
         const contactButton = document.querySelector('.mbr-section-btn');
         if (contactButton) {
-          contactButton.style.display = 'none';
+          // Only show contact button if the service has contact information
+          if (serviceData.service.contacto && serviceData.service.contacto.trim() !== '') {
+            contactButton.style.display = 'block';
+            const contactBtn = document.getElementById('BtonContacto');
+            if (contactBtn) {
+              contactBtn.href = `https://wa.me/${serviceData.service.contacto}`;
+            }
+          } else {
+            contactButton.style.display = 'none';
+          }
         }
 
         const response = await fetch(getApiUrl(`get-service/${encodeURIComponent(serviceName)}`));
@@ -290,7 +333,7 @@
         const serviceData = await response.json();
 
         document.getElementById('SevicioTitulo').innerHTML = `<strong>${serviceData.service.nombre}</strong>`;
-        document.getElementById('AGDescripcion').innerHTML = serviceData.service.descripcion;
+        document.getElementById('AGDescripcion').innerHTML = `<pre>${serviceData.service.descripcion}</pre>`;
 
         const imagen1Div = document.getElementById('Imagen1');
         if (serviceData.service.img) {
@@ -428,7 +471,7 @@
           title.className = 'card-title mbr-fonts-style display-7';
           title.innerHTML = `<strong>${line.titulo}</strong>`;
             
-          const desc = document.createElement('p');
+          const desc = document.createElement('pre');
           desc.className = 'card-text mbr-fonts-style display-7';
           desc.textContent = line.descripcion;
             
