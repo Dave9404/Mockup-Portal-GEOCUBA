@@ -289,13 +289,18 @@
                 const empresasData = await empresasResponse.json();
                 
                 const empresasMenu = document.getElementById('empresas-menu');
-                empresasData.forEach(empresa => {
-                    const link = document.createElement('a');
-                    link.className = 'text-black dropdown-item display-4';
-                    link.href = `empresas.html?empresa=${encodeURIComponent(empresa.nombre)}`;
-                    link.textContent = empresa.nombre;
-                    empresasMenu.appendChild(link);
-                });
+                if (empresasMenu) {
+                    empresasMenu.innerHTML = ''; // Clear existing items
+                    empresasData.forEach(empresa => {
+                        const link = document.createElement('a');
+                        link.className = 'text-black dropdown-item display-4';
+                        link.href = `empresas.html?empresa=${encodeURIComponent(empresa.empresa || empresa.nombre)}`;
+                        link.textContent = empresa.empresa || empresa.nombre;
+                        empresasMenu.appendChild(link);
+                    });
+                } else {
+                    console.error('Empresas menu element not found');
+                }
                 
                 // Load servicios for dropdown
                 const serviciosResponse = await fetch(getApiUrl('get-services'));
@@ -303,13 +308,18 @@
                 const serviciosData = await serviciosResponse.json();
                 
                 const serviciosMenu = document.getElementById('servicios-menu');
-                serviciosData.forEach(servicio => {
-                    const link = document.createElement('a');
-                    link.className = 'text-black dropdown-item display-4';
-                    link.href = `servicios.html?service=${encodeURIComponent(servicio.nombre)}`;
-                    link.textContent = servicio.nombre;
-                    serviciosMenu.appendChild(link);
-                });
+                if (serviciosMenu) {
+                    serviciosMenu.innerHTML = ''; // Clear existing items
+                    serviciosData.forEach(servicio => {
+                        const link = document.createElement('a');
+                        link.className = 'text-black dropdown-item display-4';
+                        link.href = `servicios.html?service=${encodeURIComponent(servicio.nombre)}`;
+                        link.textContent = servicio.nombre;
+                        serviciosMenu.appendChild(link);
+                    });
+                } else {
+                    console.error('Servicios menu element not found');
+                }
             } catch (error) {
                 console.error('Error loading dropdown data:', error);
             }
