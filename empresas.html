@@ -394,14 +394,19 @@
                             <h5 class="mbr-section-title mbr-fonts-style mb-4 display-2">
                                 <strong>${company.empresa}</strong>
                             </h5>
-                            <pre class="price mbr-fonts-style mb-4 display-7">
+
+                            <div class="price mbr-fonts-style mb-4 display-7">
+                              <pre>
                                 <strong>${company.descripcion || 'Información no disponible'}</strong>
-                            </pre>
-                            <pre class="mbr-text mbr-fonts-style mb-4 display-7">
+                              </pre>
+                            </div>
+                            <div class="mbr-text mbr-fonts-style mb-4 display-7">
+                              <pre>
                                 <strong>Dirección: </strong>${company.direccion || 'No disponible'}<br>
                                 <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
                                 <strong>E-Mail: </strong>${company.mail || 'No disponible'}
-                            </pre>
+                              </pre>
+                            </div>
                             <div class="mbr-section-btn mt-3">
                                 ${company.sitio && company.sitio.trim() !== '' ? `
                                     <a class="btn btn-lg btn-primary display-7" href="https://${company.sitio}" target="_blank">
@@ -451,11 +456,13 @@
                 <h5 class="card-title mbr-fonts-style display-5 mb-3">
                     <strong>${company.empresa}</strong>
                 </h5>
-                <pre class="card-text mbr-fonts-style display-7 mb-4">
+                <div class="card-text mbr-fonts-style display-7 mb-4">
+                  <pre>
                     <strong>Dirección:</strong> ${company.direccion || 'No disponible'}<br>
                     <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
                     <strong>E-Mail:</strong> ${company.mail || 'No disponible'}
-                </pre>
+                  </pre>
+                </div>
                 <div class="mbr-section-btn mt-3">
                     ${company.sitio && company.sitio.trim() !== '' ? `
                         <a class="btn btn-lg btn-primary display-7" href="https://${company.sitio}" target="_blank">
