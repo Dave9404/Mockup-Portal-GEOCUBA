@@ -8,6 +8,36 @@
     <meta name="description" content="">
     <title>Noticias - GEOCUBA</title>
     
+    <!-- Custom styles for text justification across all elements -->
+    <style>
+        /* Text justification for all text-containing elements */
+        p, pre, div, .mbr-text, .display-7, .price, .mbr-section-title, .mbr-section-subtitle, 
+        .mbr-fonts-style, .card-title, .card-text, .card-box, .item-title, .item-text,
+        h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption, .description, 
+        [data-content], [data-text], [data-description], [data-title], .product-description {
+          text-align: justify;
+        }
+        
+        /* Special handling for pre tags */
+        pre {
+          white-space: pre-wrap;       /* CSS3 */
+          white-space: -moz-pre-wrap;  /* Firefox */
+          white-space: -pre-wrap;      /* Opera <7 */
+          white-space: -o-pre-wrap;    /* Opera 7 */
+          word-wrap: break-word;       /* IE */
+          overflow-x: hidden;          /* Hide horizontal scrollbar */
+          max-width: 100%;             /* Ensure it doesn't exceed container width */
+          font-family: inherit;        /* Use the same font as the rest of the content */
+          margin-bottom: 1rem;         /* Add some spacing */
+        }
+        
+        /* Dynamic content created via JavaScript will inherit these styles */
+        [id*='detail'], [id*='content'], [class*='detail'], [class*='content'], 
+        [class*='description'], [id*='description'] {
+          text-align: justify;
+        }
+    </style>
+    
     <!-- API Functions - Plain HTTP URLs without templates -->
     <script>
         // Helper function to format text content with proper paragraphs

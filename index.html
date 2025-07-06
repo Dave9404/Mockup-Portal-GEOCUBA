@@ -18,8 +18,17 @@
   <link rel="shortcut icon" href="/assets/images/icon2x-354x158.png" type="image/x-icon">
   <title>Portal Web GEOCUBA</title>
   
-  <!-- Custom styles for pre tags to prevent horizontal scrolling -->
+  <!-- Custom styles for text justification across all elements -->
   <style>
+    /* Text justification for all text-containing elements */
+    p, pre, div, .mbr-text, .display-7, .price, .mbr-section-title, .mbr-section-subtitle, 
+    .mbr-fonts-style, .card-title, .card-text, .card-box, .item-title, .item-text,
+    h1, h2, h3, h4, h5, h6, li, td, th, blockquote, figcaption, .description, 
+    [data-content], [data-text], [data-description], [data-title], .product-description {
+      text-align: justify;
+    }
+    
+    /* Special handling for pre tags */
     pre {
       white-space: pre-wrap;       /* CSS3 */
       white-space: -moz-pre-wrap;  /* Firefox */
@@ -28,32 +37,19 @@
       word-wrap: break-word;       /* IE */
       overflow-x: hidden;          /* Hide horizontal scrollbar */
       max-width: 100%;             /* Ensure it doesn't exceed container width */
-      text-align: justify;         /* Justify text for better readability */
       font-family: inherit;        /* Use the same font as the rest of the content */
       margin-bottom: 1rem;         /* Add some spacing */
+    }
+    
+    /* Dynamic content created via JavaScript will inherit these styles */
+    [id*='detail'], [id*='content'], [class*='detail'], [class*='content'], 
+    [class*='description'], [id*='description'] {
+      text-align: justify;
     }
   </style>
   
   <!-- API Functions - Plain HTTP URLs without templates -->
   <script>
-    // Helper function to format text content with proper paragraphs
-    function formatTextContent(text) {
-      if (!text) return '';
-      
-      // Split by double line breaks to create paragraphs
-      const paragraphs = text.split(/\n\s*\n/);
-      
-      if (paragraphs.length > 1) {
-        // Multiple paragraphs - wrap each in <p> tags
-        return paragraphs
-          .filter(p => p.trim() !== '')
-          .map(p => `<p>${p.trim()}</p>`)
-          .join('');
-      } else {
-        // Single paragraph or no clear paragraph breaks
-        return text;
-      }
-    }
     
     // Define API URL helper functions that work with the current page's host
     window.getApiUrl = function(endpoint) {
@@ -690,11 +686,12 @@
     </div>
 </section>
 <script src="/assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="/assets/parallax/jarallax.js"></script>  <script src="/assets/smoothscroll/smooth-scroll.js"></script>  <script src="/assets/ytplayer/index.js"></script>  <script src="/assets/dropdown/js/navbar-dropdown.js"></script>  <script src="/assets/mbr-tabs/mbr-tabs.js"></script>  <script src="/assets/embla/embla.min.js"></script>  <script src="/assets/embla/script.js"></script>  <script src="/assets/theme/js/script.js"></script>
+<script src="/js/text-utils.js"></script>
   
   
   <input name="animation" type="hidden">
   <script>
-		async function loadPresentationData() {
+		    async function loadPresentationData() {
     try {
         const response = await fetch(getApiUrl('get-presentacion'));
         if (!response.ok) throw new Error('Failed to fetch presentation data');
@@ -709,12 +706,17 @@
 
         const titleElement = document.getElementById('main-title');
         if (titleElement) {
-            titleElement.innerHTML = `<strong>${presentation.titulo || 'Default Title'}</strong>`;
+            // Using innerHTML with style for justification
+            titleElement.innerHTML = `<strong style="text-align: justify; display: block;">${presentation.titulo || 'Default Title'}</strong>`;
         }
 
         const descriptionElement = document.getElementById('main-description');
         if (descriptionElement) {
-            descriptionElement.textContent = presentation.descripcion || 'Default description text.';
+            // Convert to innerHTML with style for justification
+            const descText = presentation.descripcion || 'Default description text.';
+            // Check if the text is long enough for justification to look good
+            const justifyStyle = descText.length > 100 ? 'style="text-align: justify; display: block;"' : '';
+            descriptionElement.innerHTML = `<span ${justifyStyle}>${descText}</span>`;
         }
 
         const imageElement = document.getElementById('main-image');

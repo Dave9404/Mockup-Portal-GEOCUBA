@@ -396,16 +396,10 @@
                             </h5>
 
                             <div class="price mbr-fonts-style mb-4 display-7">
-                              <pre>
-                                <strong>${company.descripcion || 'Información no disponible'}</strong>
-                              </pre>
+                              <pre><strong>${company.descripcion || 'Información no disponible'}</strong></pre>
                             </div>
                             <div class="mbr-text mbr-fonts-style mb-4 display-7">
-                              <pre>
-                                <strong>Dirección: </strong>${company.direccion || 'No disponible'}<br>
-                                <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
-                                <strong>E-Mail: </strong>${company.mail || 'No disponible'}
-                              </pre>
+                              <pre><strong>Dirección: </strong>${company.direccion || 'No disponible'}<br><strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br><strong>E-Mail: </strong>${company.mail || 'No disponible'}</pre>
                             </div>
                             <div class="mbr-section-btn mt-3">
                                 ${company.sitio && company.sitio.trim() !== '' ? `
@@ -457,11 +451,7 @@
                     <strong>${company.empresa}</strong>
                 </h5>
                 <div class="card-text mbr-fonts-style display-7 mb-4">
-                  <pre>
-                    <strong>Dirección:</strong> ${company.direccion || 'No disponible'}<br>
-                    <strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br>
-                    <strong>E-Mail:</strong> ${company.mail || 'No disponible'}
-                  </pre>
+                  <pre><strong>Dirección:</strong> ${company.direccion || 'No disponible'}<br><strong>Teléfono: </strong>${company.telf ? `(+53) ${company.telf}` : 'No disponible'}<br><strong>E-Mail:</strong> ${company.mail || 'No disponible'}</pre>
                 </div>
                 <div class="mbr-section-btn mt-3">
                     ${company.sitio && company.sitio.trim() !== '' ? `
